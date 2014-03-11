@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.sixtynine.stock.dao.User;
 import org.sixtynine.stock.util.HibernateUtil;
 
+
 /**
  * Hello world!
  * 
