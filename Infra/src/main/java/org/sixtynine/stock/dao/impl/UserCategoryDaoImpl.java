@@ -6,8 +6,10 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.sixtynine.stock.dao.UserCategoryDao;
 import org.sixtynine.stock.entity.UserCategory;
+import org.springframework.stereotype.Repository;
 
-public class UserCategoryDaoImpl extends AbstractDaoImpl<UserCategory, String>
+@Repository
+public class UserCategoryDaoImpl extends AbstractDaoImpl<UserCategory, Integer>
 		implements UserCategoryDao {
 
 	protected UserCategoryDaoImpl() {
@@ -21,7 +23,6 @@ public class UserCategoryDaoImpl extends AbstractDaoImpl<UserCategory, String>
 
 	@Override
 	public List<UserCategory> findUserCategories(String name) {
-		return findByCriteria(Restrictions.like("name", name,
-				MatchMode.START));
+		return findByCriteria(Restrictions.like("name", name, MatchMode.START));
 	}
 }

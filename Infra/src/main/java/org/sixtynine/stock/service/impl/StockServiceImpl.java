@@ -9,16 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("stockService")
-@Transactional(readOnly = true)
+@Service
 public class StockServiceImpl implements StockService {
 
 	@Autowired
 	private UserCategoryDao userCategoryDao;
 
 	@Override
-	public UserCategory findByUserName(String userName) {
-		return userCategoryDao.findById(userName);
+	public UserCategory findById(int id) {
+		return userCategoryDao.findById(id);
 	}
 
 	@Override
@@ -29,8 +28,8 @@ public class StockServiceImpl implements StockService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public void deleteUser(String userName) {
-		UserCategory user = userCategoryDao.findById(userName);
+	public void deleteUser(int id) {
+		UserCategory user = userCategoryDao.findById(id);
 		if (user != null) {
 			userCategoryDao.delete(user);
 		}
