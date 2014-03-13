@@ -22,13 +22,13 @@ public class UserCategoryServiceImpl implements UserCategoryService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public void saveUser(UserCategory userCategory) {
+	public void saveUserCategory(UserCategory userCategory) {
 		userCategoryDao.saveUserCategory(userCategory);
 	}
 
 	@Override
 	@Transactional(readOnly = false)
-	public void deleteUser(int id) {
+	public void deleteUserCategory(int id) {
 		UserCategory user = userCategoryDao.findById(id);
 		if (user != null) {
 			userCategoryDao.delete(user);
@@ -36,7 +36,7 @@ public class UserCategoryServiceImpl implements UserCategoryService {
 	}
 
 	@Override
-	public List<UserCategory> findUsers(String user) {
+	public List<UserCategory> findUserCategories(String user) {
 		return userCategoryDao.findUserCategories(user);
 	}
 }

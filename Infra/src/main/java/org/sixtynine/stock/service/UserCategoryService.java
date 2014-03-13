@@ -12,9 +12,9 @@ public interface UserCategoryService {
 
 	UserCategory findById(int id);
 
-	void saveUser(UserCategory userCategory);
+	void saveUserCategory(UserCategory userCategory);
 
-	void deleteUser(int id);
+	void deleteUserCategory(int id);
 
-	List<UserCategory> findUsers(String name);
+	List<UserCategory> findUserCategories(String name);
 }

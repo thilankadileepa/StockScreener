@@ -32,7 +32,7 @@ public class UserCategoryServiceTest {
 	@After
 	public void tearDown() throws Exception {
 		UserCategory userCategory = createUser("Namal");
-		stockService.deleteUser(userCategory.getId());
+		stockService.deleteUserCategory(userCategory.getId());
 	}
 
 	@Test
@@ -45,7 +45,7 @@ public class UserCategoryServiceTest {
 
 	private UserCategory createUser(String name) {
 		UserCategory userCategory = new UserCategory(name);
-		stockService.saveUser(userCategory);
+		stockService.saveUserCategory(userCategory);
 		
 		return userCategory;
 	}
@@ -53,7 +53,7 @@ public class UserCategoryServiceTest {
 	@Test
 	public void testSearchUser() throws Exception {
 		createUser("Saminda");
-		List<UserCategory> users = stockService.findUsers("Saminda");
+		List<UserCategory> users = stockService.findUserCategories("Saminda");
 		assertEquals(1, users.size());
 		assertEquals("Saminda", users.iterator().next().getName());
 	}
@@ -62,7 +62,7 @@ public class UserCategoryServiceTest {
 	public void testDeleteUser() throws Exception {
 		UserCategory userCategory = createUser("Hasantha");
 		assertNotNull(stockService.findById(userCategory.getId()));
-		stockService.deleteUser(userCategory.getId());
+		stockService.deleteUserCategory(userCategory.getId());
 		assertNull(stockService.findById(userCategory.getId()));
 	}
 
@@ -74,7 +74,7 @@ public class UserCategoryServiceTest {
 		assertEquals("Dhanusha", user01.getName());
 
 		user01.setName("Edited");
-		stockService.saveUser(user01);
+		stockService.saveUserCategory(user01);
 
 		UserCategory found = stockService.findById(user01.getId());
 		assertNotNull(found);
