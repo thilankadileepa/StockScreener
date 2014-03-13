@@ -4,7 +4,11 @@ import java.util.List;
 
 import org.sixtynine.stock.entity.UserCategory;
 
-public interface StockService {
+/**
+ * @author Thilanka
+ *
+ */
+public interface UserCategoryService {
 
 	UserCategory findById(int id);
 

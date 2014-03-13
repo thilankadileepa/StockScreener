@@ -14,13 +14,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+/**
+ * test cases for user category service
+ * 
+ * @author Thilanka
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring/applicationContext.xml",
 		"classpath:spring/hibernateContext.xml" })
-public class StockServiceTest {
+public class UserCategoryServiceTest {
 
 	@Autowired
-	private StockService stockService;
+	private UserCategoryService stockService;
 
 
 	@After
