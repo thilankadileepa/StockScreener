@@ -5,6 +5,8 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
+ * Thilanka
+ * 
  * Unit test for simple App.
  */
 public class AppTest extends TestCase {
