@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,12 +16,12 @@ import javax.persistence.Table;
 public class DailySectorData {
 
 	private int id;
-	private int sectorId;
 	private Date date;
 	private double closingValue;
 	private double noOfTrades;
 	private double volume;
 	private double turnOver;
+	private Sector sector;
 
 	@Id
 	@Column(name = "ID", unique = true, nullable = false)
@@ -30,15 +32,6 @@ public class DailySectorData {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-	@Column(name = "SECTOR_ID", nullable = false, length = 10)
-	public int getSectorId() {
-		return sectorId;
-	}
-
-	public void setSectorId(int sectorId) {
-		this.sectorId = sectorId;
 	}
 
 	@Column(name = "DATE", nullable = false, length = 30)
@@ -85,5 +78,17 @@ public class DailySectorData {
 	public void setTurnOver(double turnOver) {
 		this.turnOver = turnOver;
 	}
+
+	@ManyToOne  
+	@JoinColumn(name = "SECTOR_ID")  
+	public Sector getSector() {
+		return sector;
+	}
+
+	public void setSector(Sector sector) {
+		this.sector = sector;
+	}
+	
+	
 
 }

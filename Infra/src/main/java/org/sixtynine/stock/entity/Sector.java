@@ -1,10 +1,13 @@
 package org.sixtynine.stock.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +17,8 @@ public class Sector {
 	private int id;
 	private String code;
 	private String name;
+	private Set<DailySectorData> dailySectorData;
+	
 	
 	public Sector() {
 	}
@@ -52,6 +57,16 @@ public class Sector {
 	public boolean equals(Object obj) {
 		return (id==((Sector)obj).getId());
 	}
+
+	@OneToMany(mappedBy = "sector")   
+	public Set<DailySectorData> getDailySectorData() {
+		return dailySectorData;
+	}
+
+	public void setDailySectorData(Set<DailySectorData> dailySectorData) {
+		this.dailySectorData = dailySectorData;
+	}
+	
 	
 	
 }

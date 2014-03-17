@@ -5,7 +5,9 @@ import java.util.List;
 import org.hibernate.criterion.Restrictions;
 import org.sixtynine.stock.dao.QuarterlyShareDataDao;
 import org.sixtynine.stock.entity.QuarterlyShareData;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class QuarterlyShareDataDaoImpl extends AbstractDaoImpl<QuarterlyShareData , Integer> implements
 		QuarterlyShareDataDao {
 

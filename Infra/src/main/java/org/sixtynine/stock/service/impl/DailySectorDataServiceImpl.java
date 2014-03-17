@@ -3,9 +3,7 @@ package org.sixtynine.stock.service.impl;
 import java.util.List;
 
 import org.sixtynine.stock.dao.DailySectorDataDao;
-import org.sixtynine.stock.dao.ModuleDao;
 import org.sixtynine.stock.entity.DailySectorData;
-import org.sixtynine.stock.entity.Module;
 import org.sixtynine.stock.service.DailySectorDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
