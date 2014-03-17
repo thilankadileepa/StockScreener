@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,13 +14,13 @@ import javax.persistence.Table;
 public class AnnualShareData {
 
 	private int id;
-	private int companyId;
 	private int year;
 	private double netProfit;
 	private double numberOfShares;
 	private double revenues;
 	private double ebitda;
 	private double dividents;
+	private Company company;
 
 	@Id
 	@Column(name = "ID", unique = true, nullable = false)
@@ -31,14 +33,6 @@ public class AnnualShareData {
 		this.id = id;
 	}
 
-	@Column(name = "COMPANY_ID", unique = true, nullable = false)
-	public int getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
-	}
 
 	@Column(name = "YEAR", unique = true, nullable = false)
 	public int getYear() {
@@ -98,5 +92,17 @@ public class AnnualShareData {
 	public boolean equals(Object obj) {
 		return (id==((AnnualShareData)obj).getId());
 	}
+
+	@ManyToOne  
+	@JoinColumn(name = "COMPANY_ID")
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+	
+	
 
 }

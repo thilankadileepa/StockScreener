@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +16,6 @@ import javax.persistence.Table;
 public class IntradayShareData {
 
 	private int id;
-	private int companyId;
 	private Date time;
 	private double tradeVolume;
 	private double shareVolume;
@@ -24,6 +25,9 @@ public class IntradayShareData {
 	private double valueChange;
 	private double percentageChange;
 
+	
+	private Company company;
+	
 	@Id
 	@Column(name = "ID", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,15 +37,6 @@ public class IntradayShareData {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	@Column(name = "COMPANY_ID", unique = true, nullable = false)
-	public int getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
 	}
 
 	@Column(name = "TIME", nullable = false, length = 100)
@@ -120,5 +115,17 @@ public class IntradayShareData {
 	public boolean equals(Object obj) {
 		return (id==((IntradayShareData)obj).getId());
 	}
+
+	@ManyToOne  
+	@JoinColumn(name = "COMPANY_ID")
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+	
+	
 
 }

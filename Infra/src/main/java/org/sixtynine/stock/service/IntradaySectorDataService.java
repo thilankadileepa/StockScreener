@@ -3,6 +3,7 @@ package org.sixtynine.stock.service;
 import java.util.List;
 
 import org.sixtynine.stock.entity.IntradaySectorData;
+import org.sixtynine.stock.entity.Sector;
 
 public interface IntradaySectorDataService {
 
@@ -12,6 +13,6 @@ public interface IntradaySectorDataService {
 
 	void deleteIntradaySectorData(int id);
 
-	List<IntradaySectorData> findIntradaySectorData(int sectorId);
+	List<IntradaySectorData> findIntradaySectorData(Sector sector);
 	
 }

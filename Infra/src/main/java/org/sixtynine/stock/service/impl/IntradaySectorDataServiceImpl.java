@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.sixtynine.stock.dao.IntradaySectorDataDao;
 import org.sixtynine.stock.entity.IntradaySectorData;
+import org.sixtynine.stock.entity.Sector;
 import org.sixtynine.stock.service.IntradaySectorDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,8 +38,8 @@ public class IntradaySectorDataServiceImpl implements IntradaySectorDataService 
 
 	@Override
 	@Transactional(readOnly = false)
-	public List<IntradaySectorData> findIntradaySectorData(int sectorId) {
-		return intradaySectorDataDao.findIntradaySectorData(sectorId);
+	public List<IntradaySectorData> findIntradaySectorData(Sector sector) {
+		return intradaySectorDataDao.findIntradaySectorData(sector.getId());
 	}
 
 }

@@ -89,6 +89,10 @@ public class DailySectorData {
 		this.sector = sector;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		return (id==((DailySectorData)obj).getId());
+	}
 	
 
 }

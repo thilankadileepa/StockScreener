@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,12 +16,13 @@ import javax.persistence.Table;
 public class IntradaySectorData {
 
 	private int id;
-	private int sectorId;
 	private Date time;
 	private double value;
 	private double valueChange;
 	private double percentageChange;
 	private int sequence;
+	
+	private Sector sector;
 
 	@Id
 	@Column(name = "ID", unique = true, nullable = false)
@@ -30,15 +33,6 @@ public class IntradaySectorData {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	@Column(name = "SECTOR_ID", nullable = false, length = 100)
-	public int getSectorId() {
-		return sectorId;
-	}
-
-	public void setSectorId(int sectorId) {
-		this.sectorId = sectorId;
 	}
 
 	@Column(name = "TIME", nullable = false, length = 100)
@@ -90,5 +84,17 @@ public class IntradaySectorData {
 	public boolean equals(Object obj) {
 		return (id==((IntradaySectorData)obj).getId());
 	}
+
+	@ManyToOne  
+	@JoinColumn(name = "SECTOR_ID")
+	public Sector getSector() {
+		return sector;
+	}
+
+	public void setSector(Sector sector) {
+		this.sector = sector;
+	}
+	
+	
 
 }

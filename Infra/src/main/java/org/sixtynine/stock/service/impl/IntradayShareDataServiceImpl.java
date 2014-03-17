@@ -22,7 +22,7 @@ public class IntradayShareDataServiceImpl implements IntradayShareDataService {
 
 	@Override
 	@Transactional(readOnly = false)
-	public void saveUserCategory(IntradayShareData intradayShareData) {
+	public void saveIntradayShareData(IntradayShareData intradayShareData) {
 		intradayShareDataDao.saveIntradayShareData(intradayShareData);
 	}
 

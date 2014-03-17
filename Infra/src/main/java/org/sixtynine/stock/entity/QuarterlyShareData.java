@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,7 +14,6 @@ import javax.persistence.Table;
 public class QuarterlyShareData {
 
 	private int id;
-	private int companyId;
 	private String quarterCode;
 	private double profit;
 	private double weightedAverage;
@@ -26,6 +27,7 @@ public class QuarterlyShareData {
 	private double instOwnership;
 	private double sharesInFreefloat;
 	private double debt;
+	private Company company;
 
 	@Id
 	@Column(name = "ID", unique = true, nullable = false)
@@ -36,15 +38,6 @@ public class QuarterlyShareData {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	@Column(name = "COMPANY_ID", unique = true, nullable = false)
-	public int getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(int companyId) {
-		this.companyId = companyId;
 	}
 
 	@Column(name = "QUARTER_CODE", nullable = false, length = 100)
@@ -83,7 +76,7 @@ public class QuarterlyShareData {
 		this.averageEquity = averageEquity;
 	}
 
-	@Column(name = "AVERAGE_TOTAL_ASSE", nullable = false, length = 100)
+	@Column(name = "AVERAGE_TOTAL_ASSERTS", nullable = false, length = 100)
 	public double getAverageTotalAsse() {
 		return averageTotalAsse;
 	}
@@ -168,5 +161,17 @@ public class QuarterlyShareData {
 	public boolean equals(Object obj) {
 		return (id==((QuarterlyShareData)obj).getId());
 	}
+
+	@ManyToOne  
+	@JoinColumn(name = "COMPANY_ID")
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+	
+	
 
 }

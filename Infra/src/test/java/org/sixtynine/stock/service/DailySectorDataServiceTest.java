@@ -11,8 +11,6 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.sixtynine.stock.entity.DailySectorData;
-import org.sixtynine.stock.entity.Sector;
-import org.sixtynine.stock.service.impl.SectorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring/applicationContext.xml",
 		"classpath:spring/hibernateContext.xml" })
-public class DailySectorDataTest {
+public class DailySectorDataServiceTest {
 
 	@Autowired
 	private DailySectorDataService dailySectorDataService;
@@ -46,7 +44,6 @@ public class DailySectorDataTest {
 		dailySectorData.setClosingValue(1250.50);
 		dailySectorData.setDate(new Date());
 		dailySectorData.setNoOfTrades(6200.22);
-		System.out.println(sectorService.findById(24).getName());
 		dailySectorData.setSector(sectorService.findById(24));
 		dailySectorData.setTurnOver(9000.25);
 		dailySectorData.setVolume(8000.89);

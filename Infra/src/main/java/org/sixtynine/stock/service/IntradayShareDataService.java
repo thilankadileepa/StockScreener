@@ -8,7 +8,7 @@ public interface IntradayShareDataService {
 
 	IntradayShareData findById(int id);
 
-	void saveUserCategory(IntradayShareData intradayShareData);
+	void saveIntradayShareData(IntradayShareData intradayShareData);
 
 	void deleteIntradayShareData(int id);
 
