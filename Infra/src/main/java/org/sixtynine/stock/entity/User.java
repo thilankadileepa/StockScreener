@@ -26,7 +26,7 @@ public class User {
 	private UserCategory userCategory;
 	private User user;
 	private Set<User> users ;
-	
+	private Set<Payment> payment ;
 	
 	public User() {
 	}
@@ -123,6 +123,15 @@ public class User {
 
 	public void setUsers(Set<User> users) {
 		this.users = users;
+	}
+
+	@OneToMany(mappedBy = "user")  
+	public Set<Payment> getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Set<Payment> payment) {
+		this.payment = payment;
 	}
 	
 	

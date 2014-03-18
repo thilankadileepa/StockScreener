@@ -1,10 +1,13 @@
 package org.sixtynine.stock.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -18,6 +21,7 @@ public class Module {
 	
 	private int id;
 	private String name;
+	private Set<Filter> filter ;
 	
 	public Module() {
 	}
@@ -49,6 +53,15 @@ public class Module {
 	@Override
 	public boolean equals(Object obj) {
 		return (id==((Module)obj).getId());
+	}
+
+	@OneToMany(mappedBy = "module")  
+	public Set<Filter> getFilter() {
+		return filter;
+	}
+
+	public void setFilter(Set<Filter> filter) {
+		this.filter = filter;
 	}
 	
 	
