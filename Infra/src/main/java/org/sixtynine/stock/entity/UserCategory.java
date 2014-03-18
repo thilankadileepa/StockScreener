@@ -17,6 +17,7 @@ public class UserCategory {
 	private int id;
 	private String name;
 	private Set<User> user ;
+	private Set<CategoryModule> categoryModule ;
 
 	public UserCategory() {
 	}
@@ -57,6 +58,15 @@ public class UserCategory {
 
 	public void setUser(Set<User> user) {
 		this.user = user;
+	}
+
+	@OneToMany(mappedBy = "userCategory")  
+	public Set<CategoryModule> getCategoryModule() {
+		return categoryModule;
+	}
+
+	public void setCategoryModule(Set<CategoryModule> categoryModule) {
+		this.categoryModule = categoryModule;
 	}
 	
 	

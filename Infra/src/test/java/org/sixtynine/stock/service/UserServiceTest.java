@@ -54,7 +54,7 @@ public class UserServiceTest {
 	private User createUser(String name) {
 		User user = new User(name);
 		user.setUser(user);
-		user.setUserCategory(userCategoryService.findById(56));
+		user.setUserCategory(userCategoryService.findById(1));
 		userService.saveUser(user);
 		return user;
 	}

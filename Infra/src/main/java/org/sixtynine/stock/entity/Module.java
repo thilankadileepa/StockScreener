@@ -22,6 +22,7 @@ public class Module {
 	private int id;
 	private String name;
 	private Set<Filter> filter ;
+	private Set<CategoryModule> categoryModule ;
 	
 	public Module() {
 	}
@@ -62,6 +63,15 @@ public class Module {
 
 	public void setFilter(Set<Filter> filter) {
 		this.filter = filter;
+	}
+
+	@OneToMany(mappedBy = "module")  
+	public Set<CategoryModule> getCategoryModule() {
+		return categoryModule;
+	}
+
+	public void setCategoryModule(Set<CategoryModule> categoryModule) {
+		this.categoryModule = categoryModule;
 	}
 	
 	

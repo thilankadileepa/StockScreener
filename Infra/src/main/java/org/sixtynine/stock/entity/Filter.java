@@ -54,6 +54,9 @@ public class Filter {
 		this.module = module;
 	}
 	
-	
+	@Override
+	public boolean equals(Object obj) {
+		return (id==((Filter)obj).getId());
+	}
 
 }
