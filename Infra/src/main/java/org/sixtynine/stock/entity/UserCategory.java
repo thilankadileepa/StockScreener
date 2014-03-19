@@ -1,10 +1,13 @@
 package org.sixtynine.stock.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +16,8 @@ public class UserCategory {
 
 	private int id;
 	private String name;
+	private Set<User> user ;
+	private Set<CategoryModule> categoryModule ;
 
 	public UserCategory() {
 	}
@@ -45,5 +50,25 @@ public class UserCategory {
 	public boolean equals(Object obj) {
 		return (id==((UserCategory)obj).getId());
 	}
+
+	@OneToMany(mappedBy = "userCategory")  
+	public Set<User> getUser() {
+		return user;
+	}
+
+	public void setUser(Set<User> user) {
+		this.user = user;
+	}
+
+	@OneToMany(mappedBy = "userCategory")  
+	public Set<CategoryModule> getCategoryModule() {
+		return categoryModule;
+	}
+
+	public void setCategoryModule(Set<CategoryModule> categoryModule) {
+		this.categoryModule = categoryModule;
+	}
+	
+	
 	
 }

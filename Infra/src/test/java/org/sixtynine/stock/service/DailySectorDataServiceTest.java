@@ -18,10 +18,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:spring/applicationContext.xml",
 		"classpath:spring/hibernateContext.xml" })
-public class DailySectorDataTest {
+public class DailySectorDataServiceTest {
 
 	@Autowired
 	private DailySectorDataService dailySectorDataService;
+	
+	@Autowired
+	private SectorService sectorService;
 	
 	@After
 	public void tearDown() throws Exception {
@@ -41,7 +44,7 @@ public class DailySectorDataTest {
 		dailySectorData.setClosingValue(1250.50);
 		dailySectorData.setDate(new Date());
 		dailySectorData.setNoOfTrades(6200.22);
-		dailySectorData.setSectorId(1);
+		dailySectorData.setSector(sectorService.findById(24));
 		dailySectorData.setTurnOver(9000.25);
 		dailySectorData.setVolume(8000.89);
 		dailySectorDataService.saveDailySectorData(dailySectorData);		

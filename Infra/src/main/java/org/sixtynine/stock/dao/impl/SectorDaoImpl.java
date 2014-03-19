@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.sixtynine.stock.dao.SectorDao;
-import org.sixtynine.stock.entity.Module;
 import org.sixtynine.stock.entity.Sector;
 import org.springframework.stereotype.Repository;
 
