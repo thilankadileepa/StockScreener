@@ -1,5 +1,11 @@
 package org.sixtynine.stock.entity;
 
+/**
+ * @author Thilan
+ * this class user self relation ship
+ */
+
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "USER")
@@ -96,6 +103,7 @@ public class User {
 		return (id==((User)obj).getId());
 	}
 
+	//this is one to many relationship many side. this mapped with UserCategory class and join with table column  
 	@ManyToOne  
 	@JoinColumn(name = "CATEGORY_ID")
 	public UserCategory getUserCategory() {
@@ -106,6 +114,7 @@ public class User {
 		this.userCategory = userCategory;
 	}
 
+	//this annotation user to self references.
 	@ManyToOne(cascade={CascadeType.ALL}) 
 	@JoinColumn(name = "OWER_ID")
 	public User getUser() {

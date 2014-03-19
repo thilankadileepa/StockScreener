@@ -1,5 +1,10 @@
 package org.sixtynine.stock.entity;
 
+/**
+ * @author Thilan
+ *
+ */
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

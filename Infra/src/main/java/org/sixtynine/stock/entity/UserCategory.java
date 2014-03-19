@@ -1,5 +1,10 @@
 package org.sixtynine.stock.entity;
 
+/**
+ * this is user category 
+ *
+ */
+
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -51,6 +56,7 @@ public class UserCategory {
 		return (id==((UserCategory)obj).getId());
 	}
 
+	//one to many relation ship this is one side annotation.. this mapped with User class and there is userCategory variable
 	@OneToMany(mappedBy = "userCategory")  
 	public Set<User> getUser() {
 		return user;
@@ -60,6 +66,7 @@ public class UserCategory {
 		this.user = user;
 	}
 
+	//one to many relation ship this is one side annotation.. this mapped with CategoryModule class and there is userCategory variable
 	@OneToMany(mappedBy = "userCategory")  
 	public Set<CategoryModule> getCategoryModule() {
 		return categoryModule;
