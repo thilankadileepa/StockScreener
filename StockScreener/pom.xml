@@ -11,7 +11,6 @@
 		<spring.version>3.2.1.RELEASE</spring.version>
 		<jdk.version>1.6</jdk.version>
 	</properties>
-
 	<dependencies>
 		<!-- local infra dependancy -->
 		<dependency>
