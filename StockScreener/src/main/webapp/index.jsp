@@ -1,6 +1,6 @@
 <html>  
 <head>  
-<script type="text/javascript" src="jquery-1.2.6.min.js"></script>  
+
 <title>Being Java Guys | Hello World</title>  
 </head>  
 <body>  
@@ -12,4 +12,4 @@
         </h4>  
     </center>  
 </body>  
-</html>
+</html> 

@@ -1,11 +1,11 @@
-package org.sixtynine.stock.frontoffice;
+package org.sixtynine.stock.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class Home {
+public class HomeController {
 
 	String message = "Welcome to your 1st Maven Spring project !";
 
