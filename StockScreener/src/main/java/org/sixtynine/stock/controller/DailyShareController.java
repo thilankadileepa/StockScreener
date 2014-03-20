@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class DailyShareController {
 
 	@RequestMapping(value = "/addDailyShareData", method = RequestMethod.POST)
-	public String addDailyShareData(@ModelAttribute("dailySectorData") DailyShareData dailyShareData,
+	public String addDailyShareData(@ModelAttribute("dailyShareData") DailyShareData dailyShareData,
 			BindingResult result) {
 
 		System.out.println("No of Trades:" + dailyShareData.getSharePrice()
