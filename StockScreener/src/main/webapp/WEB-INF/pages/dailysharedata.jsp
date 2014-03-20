@@ -1,19 +1,19 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
-    <title>DailySectorData Registration</title>
+    <title>DailyShareData Registration</title>
 </head>
 <body>
-<h2>DailySectorData Manager</h2>
+<h2>DailyShareData Manager</h2>
 <form:form method="post" action="addDailyShareData.htm">
  
     <table>
     <tr>
     	<td>
-    		<form:label path="sector">Company :</form:label>
+    		<form:label path="companyId">Company :</form:label>
     	</td>
 	    <td>   
-	        <form:select path="sector" items="${companyMap}">  
+	        <form:select path="companyId" items="${companyMap}">  
         	</form:select> 
 	    </td> 
 	</tr>
@@ -22,16 +22,16 @@
         <td><form:input path="date" id="datepicker" /></td>
     </tr>
     <tr>
-        <td><form:label path="closingValue">Closing Value :</form:label></td>
-        <td><form:input path="closingValue" /></td>
+        <td><form:label path="sharePrice">Share Price:</form:label></td>
+        <td><form:input path="sharePrice" /></td>
     </tr>
     <tr>
-        <td><form:label path="noOfTrades">noOfTrades :</form:label></td>
-        <td><form:input path="noOfTrades" /></td>
+        <td><form:label path="high">High :</form:label></td>
+        <td><form:input path="high" /></td>
     </tr>
     <tr>
-        <td><form:label path="volume">Volume :</form:label></td>
-        <td><form:input path="volume" /></td>
+        <td><form:label path="low">Low :</form:label></td>
+        <td><form:input path="low" /></td>
     </tr>
     <tr>
         <td><form:label path="turnOver">Turnover :</form:label></td>
