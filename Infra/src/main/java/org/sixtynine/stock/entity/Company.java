@@ -26,16 +26,17 @@ public class Company {
 	private String name;
 	private Sector sector;
 	private Set<AnnualShareData> annualShareData;
-	private Set<IntradayShareData> intradayShareData ;
-	private Set<QuarterlyShareData> quarterlyShareData ;
-	
+	private Set<IntradayShareData> intradayShareData;
+	private Set<QuarterlyShareData> quarterlyShareData;
+	private Set<DailyShareData> dailyShareData;
+
 	public Company() {
 	}
 
 	public Company(String name) {
 		this.name = name;
 	}
-	
+
 	@Id
 	@Column(name = "ID", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -55,7 +56,7 @@ public class Company {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
+
 	@Column(name = "NAME", nullable = false, length = 30)
 	public String getName() {
 		return name;
@@ -65,7 +66,7 @@ public class Company {
 		this.name = name;
 	}
 
-	@ManyToOne  
+	@ManyToOne
 	@JoinColumn(name = "SECTOR_ID")
 	public Sector getSector() {
 		return sector;
@@ -74,13 +75,13 @@ public class Company {
 	public void setSector(Sector sector) {
 		this.sector = sector;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		return (id==((Company)obj).getId());
+		return (id == ((Company) obj).getId());
 	}
 
-	@OneToMany(mappedBy = "company")   
+	@OneToMany(mappedBy = "company")
 	public Set<AnnualShareData> getAnnualShareData() {
 		return annualShareData;
 	}
@@ -89,7 +90,7 @@ public class Company {
 		this.annualShareData = annualShareData;
 	}
 
-	@OneToMany(mappedBy = "company")   
+	@OneToMany(mappedBy = "company")
 	public Set<IntradayShareData> getIntradayShareData() {
 		return intradayShareData;
 	}
@@ -98,7 +99,7 @@ public class Company {
 		this.intradayShareData = intradayShareData;
 	}
 
-	@OneToMany(mappedBy = "company")  
+	@OneToMany(mappedBy = "company")
 	public Set<QuarterlyShareData> getQuarterlyShareData() {
 		return quarterlyShareData;
 	}
@@ -106,8 +107,14 @@ public class Company {
 	public void setQuarterlyShareData(Set<QuarterlyShareData> quarterlyShareData) {
 		this.quarterlyShareData = quarterlyShareData;
 	}
-	
-	
 
-	
+	@OneToMany(mappedBy = "company")
+	public Set<DailyShareData> getDailyShareData() {
+		return dailyShareData;
+	}
+
+	public void setDailyShareData(Set<DailyShareData> dailyShareData) {
+		this.dailyShareData = dailyShareData;
+	}
+
 }

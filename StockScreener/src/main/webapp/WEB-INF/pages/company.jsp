@@ -9,12 +9,12 @@
  
     <table>
     <tr>
-    	<td><form:label path="name">Sector :</form:label></td>
-	    <td>  
-	        <ul>  
-	             <form:select path="sector" items="${sectorsMap}">  
-        		 </form:select>
-	        </ul>  
+    	<td>
+    		<form:label path="name">Sector :</form:label>
+    	</td>
+	    <td>   
+	        <form:select path="sector" items="${sectorsMap}">  
+        	</form:select> 
 	    </td> 
 	</tr>
     <tr>

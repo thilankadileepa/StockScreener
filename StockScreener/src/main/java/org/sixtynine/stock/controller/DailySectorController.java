@@ -3,7 +3,7 @@ package org.sixtynine.stock.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.sixtynine.stock.model.Company;
+import org.sixtynine.stock.model.DailySectorData;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,21 +14,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @SessionAttributes
-public class CompanyController {
+public class DailySectorController {
 
-	@RequestMapping(value = "/addCompany", method = RequestMethod.POST)
-	public String addCompany(@ModelAttribute("company") Company company,
+	@RequestMapping(value = "/addDailySectorData", method = RequestMethod.POST)
+	public String addDailySectorData(@ModelAttribute("dailySectorData") DailySectorData dailySectorData,
 			BindingResult result) {
 
-		System.out.println("First Name:" + company.getName()
-				+ "Last Name:" + company.getCode());
+		System.out.println("No of Trades:" + dailySectorData.getNoOfTrades()
+				+ "Turn Over:" + dailySectorData.getTurnOver());
 
-		return "redirect:companies.htm";
+		return "redirect:dailysectors.htm";
 	}
 
-	@RequestMapping("/companies")
-	public ModelAndView showCompany() {
-		ModelAndView mv = new ModelAndView("company", "command", new Company());
+	@RequestMapping("/dailysectors")
+	public ModelAndView showDailySectorData() {
+		ModelAndView mv = new ModelAndView("dailysectordata", "command", new DailySectorData());
 		
 		 Map< String, String > sector1 = new HashMap<String, String>();  
 	        sector1.put("BFI", "Bank");  

@@ -3,7 +3,7 @@ package org.sixtynine.stock.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.sixtynine.stock.model.Company;
+import org.sixtynine.stock.model.DailyShareData;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,28 +14,28 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @SessionAttributes
-public class CompanyController {
+public class DailyShareController {
 
-	@RequestMapping(value = "/addCompany", method = RequestMethod.POST)
-	public String addCompany(@ModelAttribute("company") Company company,
+	@RequestMapping(value = "/addDailyShareData", method = RequestMethod.POST)
+	public String addDailyShareData(@ModelAttribute("dailySectorData") DailyShareData dailyShareData,
 			BindingResult result) {
 
-		System.out.println("First Name:" + company.getName()
-				+ "Last Name:" + company.getCode());
+		System.out.println("No of Trades:" + dailyShareData.getSharePrice()
+				+ "Turn Over:" + dailyShareData.getTurnOver());
 
-		return "redirect:companies.htm";
+		return "redirect:dailyshares.htm";
 	}
 
-	@RequestMapping("/companies")
-	public ModelAndView showCompany() {
-		ModelAndView mv = new ModelAndView("company", "command", new Company());
+	@RequestMapping("/dailyshares")
+	public ModelAndView showDailyShareData() {
+		ModelAndView mv = new ModelAndView("dailysharedata", "command", new DailyShareData());
 		
 		 Map< String, String > sector1 = new HashMap<String, String>();  
 	        sector1.put("BFI", "Bank");  
 	        sector1.put("BFT", "Finance");  
 	        sector1.put("C&P", "Cop");  
 	        
-		mv.addObject("sectorsMap" ,sector1);
+		mv.addObject("companyMap" ,sector1);
 		return mv;
 	}
 	

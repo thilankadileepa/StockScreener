@@ -3,9 +3,7 @@ package org.sixtynine.stock.service.impl;
 import java.util.List;
 
 import org.sixtynine.stock.dao.FilterCategoryDao;
-import org.sixtynine.stock.entity.Filter;
 import org.sixtynine.stock.entity.FilterCategory;
-import org.sixtynine.stock.entity.User;
 import org.sixtynine.stock.service.FilterCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -23,6 +23,9 @@ public class DailyShareDataServiceTest {
 	@Autowired
 	private DailyShareDataService dailyShareDataService;
 	
+	@Autowired
+	private CompanyService companyService;
+	
 	@After
 	public void tearDown() throws Exception {
 		DailyShareData dailyShareData = createDailyShareData();
@@ -41,7 +44,7 @@ public class DailyShareDataServiceTest {
 		dailyShareData.setSharePrice(1250.50);
 		dailyShareData.setDate(new Date());
 		dailyShareData.setNoOfTrade(6200.22);
-		dailyShareData.setCompanyId(1);
+		dailyShareData.setCompany(companyService.findById(1));
 		dailyShareData.setTurnOver(9000.25);
 		dailyShareData.setVolume(8000.89);
 		dailyShareData.setLow(105.89);

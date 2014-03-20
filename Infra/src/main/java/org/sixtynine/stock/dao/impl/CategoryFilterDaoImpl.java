@@ -2,7 +2,6 @@ package org.sixtynine.stock.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.sixtynine.stock.dao.CategoryFilterDao;
 import org.sixtynine.stock.entity.CategoryFilter;

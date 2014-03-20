@@ -9,7 +9,7 @@
  
     <table>
     <tr>
-    	<td><form:label path="name">Sector :</form:label></td>
+    	<td><form:label path="module">Module :</form:label></td>
 	    <td>  
 	        <ul>  
 	             <form:select path="module" items="${filterMap}">  
@@ -18,12 +18,8 @@
 	    </td> 
 	</tr>
     <tr>
-        <td><form:label path="name">Name :</form:label></td>
-        <td><form:input path="name" /></td>
-    </tr>
-    <tr>
-        <td><form:label path="code">Code :</form:label></td>
-        <td><form:input path="code" /></td>
+        <td><form:label path="filterValues">Filter Value :</form:label></td>
+        <td><form:input path="filterValues" /></td>
     </tr>
     <tr>
         <td colspan="2">

@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class FilterController {
 
 	@RequestMapping(value = "/addFilter", method = RequestMethod.POST)
-	public String addCompany(@ModelAttribute("filter") Filter filter,
+	public String addFilter(@ModelAttribute("filter") Filter filter,
 			BindingResult result) {
 
 		System.out.println("First Name:" + filter.getFilterValues());
@@ -26,7 +26,7 @@ public class FilterController {
 	}
 
 	@RequestMapping("/filters")
-	public ModelAndView showCompany() {
+	public ModelAndView showFilter() {
 		ModelAndView mv = new ModelAndView("filter", "command", new Filter());
 		
 		 Map< String, String > module = new HashMap<String, String>();  

@@ -2,9 +2,7 @@ package org.sixtynine.stock.service.impl;
 
 import java.util.List;
 
-import org.sixtynine.stock.dao.ModuleDao;
 import org.sixtynine.stock.dao.SectorDao;
-import org.sixtynine.stock.entity.Module;
 import org.sixtynine.stock.entity.Sector;
 import org.sixtynine.stock.service.SectorService;
 import org.springframework.beans.factory.annotation.Autowired;
