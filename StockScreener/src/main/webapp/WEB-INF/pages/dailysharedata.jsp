@@ -38,6 +38,18 @@
         <td><form:input path="turnOver" /></td>
     </tr>
     <tr>
+        <td><form:label path="volume">Volume :</form:label></td>
+        <td><form:input path="volume" /></td>
+    </tr>
+    <tr>
+        <td><form:label path="noOfTrade">no Of Trade :</form:label></td>
+        <td><form:input path="noOfTrade" /></td>
+    </tr>
+     <tr>
+        <td><form:label path="openingPrice">Opening Price :</form:label></td>
+        <td><form:input path="openingPrice" /></td>
+    </tr>
+    <tr>
         <td colspan="2">
             <input type="submit" value="Save"/>
         </td>

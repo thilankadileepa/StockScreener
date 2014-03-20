@@ -26,7 +26,7 @@
         <td><form:input path="closingValue" /></td>
     </tr>
     <tr>
-        <td><form:label path="noOfTrades">noOfTrades :</form:label></td>
+        <td><form:label path="noOfTrades">no Of Trades :</form:label></td>
         <td><form:input path="noOfTrades" /></td>
     </tr>
     <tr>
