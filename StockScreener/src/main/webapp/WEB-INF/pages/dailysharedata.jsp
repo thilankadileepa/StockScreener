@@ -1,10 +1,10 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
-    <title>DailyShareData Registration</title>
+    <title>Daily Share Data Registration</title>
 </head>
 <body>
-<h2>DailyShareData Manager</h2>
+<h2>Daily Share Data Manager</h2>
 <form:form method="post" action="addDailyShareData.htm">
  
     <table>
