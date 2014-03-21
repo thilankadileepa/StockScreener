@@ -28,9 +28,7 @@ public class IntradayShareData {
 	private double lastTradedPrice;
 	private double closingPrice;
 	private double valueChange;
-	private double percentageChange;
-
-	
+	private double percentageChange;	
 	private Company company;
 	
 	@Id
