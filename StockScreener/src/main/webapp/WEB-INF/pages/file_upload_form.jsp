@@ -1,7 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
-    <title>Spring MVC Multiple File Upload</title>
+    <title>File Upload</title>
 <script
 src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script>
@@ -19,7 +19,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<h1>Spring Multiple File Upload example</h1>
+<h1>File Upload</h1>
  
 <form:form method="post" action="save.html"
         modelAttribute="uploadForm" enctype="multipart/form-data">
@@ -30,9 +30,6 @@ $(document).ready(function() {
     <table id="fileTable">
         <tr>
             <td><input name="files[0]" type="file" /></td>
-        </tr>
-        <tr>
-            <td><input name="files[1]" type="file" /></td>
         </tr>
     </table>
     <br/><input type="submit" value="Upload" />
