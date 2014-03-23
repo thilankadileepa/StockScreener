@@ -13,7 +13,7 @@ public class UserCategoryDaoImpl extends AbstractDaoImpl<UserCategory, Integer>
 		implements UserCategoryDao {
 
 	protected UserCategoryDaoImpl() {
-		super(UserCategory.class);
+		super(UserCategory.class); 
 	}
 
 	@Override

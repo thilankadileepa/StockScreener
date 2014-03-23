@@ -7,11 +7,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
-	String message = "Welcome to your 1st Maven Spring project !";
+	@RequestMapping(value = "/")
+	public ModelAndView mainPage() {
+		return new ModelAndView("home");
+	}
 
-	@RequestMapping("/hello")
-	public ModelAndView showMessage() {
-		System.out.println("from controller");
-		return new ModelAndView("hello", "message", message);
+	@RequestMapping(value = "/index")
+	public ModelAndView indexPage() {
+		return new ModelAndView("home");
 	}
 }

@@ -2,15 +2,14 @@ package org.sixtynine.stock.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.sixtynine.stock.dao.CategoryFilterDao;
 import org.sixtynine.stock.entity.CategoryFilter;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CategoryFilterDaoImpl extends AbstractDaoImpl<CategoryFilter , Integer> implements
-		CategoryFilterDao {
+public class CategoryFilterDaoImpl extends
+		AbstractDaoImpl<CategoryFilter, Integer> implements CategoryFilterDao {
 
 	protected CategoryFilterDaoImpl() {
 		super(CategoryFilter.class);

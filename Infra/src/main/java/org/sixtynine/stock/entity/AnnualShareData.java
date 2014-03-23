@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ANNUAL_SHARE_DATA")
-public class AnnualShareData {
+public class AnnualShareData extends BaseEntity {
 
 	private int id;
 	private int year;

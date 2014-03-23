@@ -32,6 +32,11 @@ public abstract class AbstractDaoImpl<E, I extends Serializable> implements
 	}
 
 	@Override
+	public E findById(I id, Class<E> clazz) {
+		return (E) getCurrentSession().get(clazz, id);
+	}
+
+	@Override
 	public void saveOrUpdate(E e) {
 		getCurrentSession().saveOrUpdate(e);
 	}
@@ -46,5 +51,27 @@ public abstract class AbstractDaoImpl<E, I extends Serializable> implements
 		Criteria criteria = getCurrentSession().createCriteria(entityClass);
 		criteria.add(criterion);
 		return criteria.list();
+	}
+
+	@Override
+	public List<E> findByCriteria(Criterion criterion, Class<E> clazz) {
+		Criteria criteria = getCurrentSession().createCriteria(clazz);
+		criteria.add(criterion);
+		return criteria.list();
+	}
+
+	@Override
+	public List<E> findByCriteria(Class<E> clazz, Criterion... criterion) {
+		Criteria criteria = getCurrentSession().createCriteria(clazz);
+		for (Criterion c : criterion) {
+			criteria.add(c);
+		}
+
+		return criteria.list();
+	}
+
+	@Override
+	public List<E> findAll(Class<E> clazz) {
+		return findByCriteria(clazz);
 	}
 }
