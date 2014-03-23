@@ -1,26 +1,11 @@
-package org.sixtynine.stock.entity;
-
-/**
- * @author Thilan
- *
- */
+package org.sixtynine.stock.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "DAILY_SHARE_DATA")
 public class DailyShareData {
 
 	private int id;
+	private int companyId;
 	private Date date;
 	private double sharePrice;
 	private double high;
@@ -29,13 +14,7 @@ public class DailyShareData {
 	private double volume;
 	private double noOfTrade;
 	private double openingPrice;
-	
-	private Company company;
 
-	
-	@Id
-	@Column(name = "ID", unique = true, nullable = false)
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
 	}
@@ -43,8 +22,15 @@ public class DailyShareData {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	@Column(name = "DATE", nullable = false, length = 30)
+
+	public int getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
+	}
+
 	public Date getDate() {
 		return date;
 	}
@@ -53,7 +39,6 @@ public class DailyShareData {
 		this.date = date;
 	}
 
-	@Column(name = "SHARE_PRICE", nullable = false)
 	public double getSharePrice() {
 		return sharePrice;
 	}
@@ -62,7 +47,6 @@ public class DailyShareData {
 		this.sharePrice = sharePrice;
 	}
 
-	@Column(name = "HIGH", nullable = false)
 	public double getHigh() {
 		return high;
 	}
@@ -71,7 +55,6 @@ public class DailyShareData {
 		this.high = high;
 	}
 
-	@Column(name = "LOW", nullable = false)
 	public double getLow() {
 		return low;
 	}
@@ -80,7 +63,6 @@ public class DailyShareData {
 		this.low = low;
 	}
 
-	@Column(name = "TURNOVER", nullable = false)
 	public double getTurnOver() {
 		return turnOver;
 	}
@@ -89,7 +71,6 @@ public class DailyShareData {
 		this.turnOver = turnOver;
 	}
 
-	@Column(name = "VOLUME", nullable = false)
 	public double getVolume() {
 		return volume;
 	}
@@ -98,7 +79,6 @@ public class DailyShareData {
 		this.volume = volume;
 	}
 
-	@Column(name = "NO_OF_TRADES", nullable = false)
 	public double getNoOfTrade() {
 		return noOfTrade;
 	}
@@ -107,7 +87,6 @@ public class DailyShareData {
 		this.noOfTrade = noOfTrade;
 	}
 
-	@Column(name = "OPENING_PRICE", nullable = false)
 	public double getOpeningPrice() {
 		return openingPrice;
 	}
@@ -115,17 +94,5 @@ public class DailyShareData {
 	public void setOpeningPrice(double openingPrice) {
 		this.openingPrice = openingPrice;
 	}
-
-	@ManyToOne  
-	@JoinColumn(name = "COMPANY_ID") 
-	public Company getCompany() {
-		return company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
-	}
-	
-	
 
 }

@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "FILTER")
 public class Filter {
@@ -22,6 +23,8 @@ public class Filter {
 	private String filterValues;
 	
 	private Module module;
+	private FilterCategory filterCategory;
+	
 
 	public Filter(){}
 	
@@ -63,5 +66,18 @@ public class Filter {
 	public boolean equals(Object obj) {
 		return (id==((Filter)obj).getId());
 	}
+
+	@ManyToOne 
+	@JoinColumn(name = "FILTER_CATEGORY_ID")
+	public FilterCategory getFilterCategory() {
+		return filterCategory;
+	}
+
+	
+	public void setFilterCategory(FilterCategory filterCategory) {
+		this.filterCategory = filterCategory;
+	}
+	
+	
 
 }
