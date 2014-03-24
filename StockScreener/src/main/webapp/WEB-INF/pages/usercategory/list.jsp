@@ -17,7 +17,7 @@
 <thead>
 </thead>
 <tbody>
-
+ 
 <c:forEach var="userCategory" items="${userCategories}">
 <tr>
 	<td>${userCategory.id}</td>
