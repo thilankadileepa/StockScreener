@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "MODULE")
-public class Module {
+public class Module extends BaseEntity{
 	
 	private int id;
 	private String name;

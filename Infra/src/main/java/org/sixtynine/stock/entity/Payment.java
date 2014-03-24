@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PAYMENT")
-public class Payment {
+public class Payment extends BaseEntity{
 
 	private int id;
 	private String merId;

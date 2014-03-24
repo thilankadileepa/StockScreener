@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "FILTER_CATEGORY")
-public class FilterCategory {
+public class FilterCategory extends BaseEntity{
 
 	private int id;
 	private String filterType;

@@ -19,7 +19,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "COMPANY")
-public class Company {
+public class Company extends BaseEntity{
 
 	private int id;
 	private String code;

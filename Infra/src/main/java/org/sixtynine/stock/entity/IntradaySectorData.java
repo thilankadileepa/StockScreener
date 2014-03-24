@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "INTRADAY_SECTOR_DATA")
-public class IntradaySectorData {
+public class IntradaySectorData extends BaseEntity{
 
 	private int id;
 	private Date time;

@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CATEGORY_MODULE")
-public class CategoryModule {
+public class CategoryModule extends BaseEntity{
 
 	private int id;
 	private UserCategory userCategory;

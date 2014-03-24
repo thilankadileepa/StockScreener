@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "FILTER")
-public class Filter {
+public class Filter extends BaseEntity{
 
 	private int id;
 	private String filterValues;

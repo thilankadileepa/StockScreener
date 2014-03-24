@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CATEGORY_FILTER")
-public class CategoryFilter {
+public class CategoryFilter extends BaseEntity{
 
 	private int id;
 	private Filter filter;
