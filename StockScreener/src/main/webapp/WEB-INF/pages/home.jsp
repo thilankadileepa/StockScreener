@@ -11,7 +11,9 @@ ${message}<br>
 	<br>
 	<a href="${pageContext.request.contextPath}/usercategory/list.html">Team list</a>
 	<br>
-	<a href="${pageContext.request.contextPath}/user/list.html">User list</a>	
+	<a href="${pageContext.request.contextPath}/user/list.html">User list</a>
+	<br>
+	<a href="${pageContext.request.contextPath}/sector/list.html">Sector list</a>	
 </p>
 </body>
 </html>
