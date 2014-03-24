@@ -22,7 +22,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USER")
-public class User {
+public class User extends BaseEntity{
 
 	private int id;
 	private String userName;
