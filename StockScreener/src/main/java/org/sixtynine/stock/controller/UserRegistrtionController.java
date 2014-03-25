@@ -1,6 +1,8 @@
 package org.sixtynine.stock.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.sixtynine.stock.entity.BaseEntity;
 import org.sixtynine.stock.entity.User;
@@ -24,15 +26,30 @@ public class UserRegistrtionController {
 	public ModelAndView addUser() {
 		ModelAndView modelAndView = new ModelAndView("user/add");
 		modelAndView.addObject("user", new User());
+		
+		Map<Integer, String > userCategories = new HashMap<Integer, String>();  
+		
+		List<BaseEntity> userCategory = genericService
+				.findAll(UserCategory.class);
+		
+		//int i = 0 ; i < userCategory.size() ;i++
+		for( BaseEntity userCat : userCategory){
+			UserCategory uCat = (UserCategory)userCat; 
+			userCategories.put(uCat.getId(), uCat.getName());  
+		}
+		      
+        modelAndView.addObject("userCategoryMap" ,userCategories);
+		
 		return modelAndView;
 	}
 	
 	
-	@RequestMapping(value = "/user/add/process")
-	public ModelAndView addingUser(@ModelAttribute User user) {
+	@RequestMapping(value = "/user/add/process/")
+	public ModelAndView addingUser(@ModelAttribute User user ,
+			@PathVariable Integer catId) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		BaseEntity userCategory = genericService.findById(1,UserCategory.class);
-		user.setUserCategory((UserCategory)userCategory);
+		System.out.println(catId);
+		
 		genericService.saveOrUpdate(user);
 
 		String message = "User was successfully added.";
@@ -74,6 +91,15 @@ public class UserRegistrtionController {
 		String message = "Team was successfully edited.";
 		modelAndView.addObject("message", message);
 
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/user/delete/{id}", method = RequestMethod.GET)
+	public ModelAndView deleteTeam(@PathVariable Integer id) {
+		ModelAndView modelAndView = new ModelAndView("home");
+		genericService.delete(id, User.class);
+		String message = "Team was successfully deleted.";
+		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
 	

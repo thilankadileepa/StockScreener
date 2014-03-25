@@ -9,26 +9,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Edit team page</title>
+<title>Edit module page</title>
 </head>
 <body>
-<h1>Edit team page</h1>
-<p>Here you can edit the existing team.</p>
+<h1>Edit module page</h1>
+<p>Here you can edit the existing module.</p>
 <p>${message}</p>
-<form:form method="POST" commandName="userCategory" action="${pageContext.request.contextPath}/usercategory/edit/${userCategory.id}.html">
-<table>
-<tbody>
-	<tr>
-		<td>Name:</td>
-		<td><form:input path="name" /></td>
-	</tr>	
-	<tr>
-		<td><input type="submit" value="Edit" /></td>
-		<td></td>
-	</tr>
-	<tr><td><form:hidden  path="id" ></form:hidden></td></tr>
-</tbody>
-</table>
+<form:form method="POST" commandName="module" action="${pageContext.request.contextPath}/module/edit/${module.id}.html">
+	<table>
+	    <tr>
+	        <td><form:label path="name">Name</form:label></td>
+	        <td><form:input path="name" /></td>
+	    </tr>
+	    <tr>
+	        <td colspan="2">
+	            <input type="submit" value="Edit"/>
+	        </td>
+	    </tr>
+	    <tr>
+	        <td><form:hidden path="id"></form:hidden></td>
+	    </tr>
+	</table>
 </form:form>
 
 <p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>

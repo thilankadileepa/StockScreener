@@ -8,8 +8,17 @@
 
 <h1>Add User</h1>
 <p>Here you can add a new team.</p>
-<form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/user/add/process.html">
+<form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/user/add/process/${catId}.html">
 <table>
+	<tr>
+    	<td>
+    		<form:label path="userCategory">User Category :</form:label>
+    	</td>
+	    <td>   
+	        <form:select path="userCategory"  name="catId" items="${userCategoryMap}">  
+        	</form:select> 
+	    </td> 
+	</tr>
     <tr>
         <td><form:label path="userName">User Name</form:label></td>
         <td><form:input path="userName" /></td>
@@ -30,9 +39,7 @@
         <td><form:label path="address">Address :</form:label></td>
         <td><form:textarea path="address" /></td>
     </tr>
-     <tr>
-        <td><form:hidden path="userCategory" /></td>
-    </tr>
+     
     <tr>
         <td colspan="2">
             <input type="submit" value="Save"/>

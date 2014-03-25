@@ -63,9 +63,11 @@ public class SectorController {
 	public ModelAndView edditingSector(@ModelAttribute Sector sector,
 			@PathVariable Integer id) {
 
-		ModelAndView modelAndView = new ModelAndView("home");
-
+		System.out.println();
 		genericService.saveOrUpdate(sector);
+		
+		ModelAndView modelAndView = new ModelAndView("home");
+		
 
 		String message = "Team was successfully edited.";
 		modelAndView.addObject("message", message);
