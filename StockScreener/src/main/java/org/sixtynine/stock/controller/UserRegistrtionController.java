@@ -44,7 +44,7 @@ public class UserRegistrtionController {
 	}
 	
 	
-	@RequestMapping(value = "/user/add/process/{catId}")
+	@RequestMapping(value = "/user/add/process/")
 	public ModelAndView addingUser(@ModelAttribute User user ,
 			@PathVariable Integer catId) {
 		ModelAndView modelAndView = new ModelAndView("home");
