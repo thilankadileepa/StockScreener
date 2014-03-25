@@ -17,6 +17,8 @@
 <p>${message}</p>
 <form:form method="POST" commandName="sector" action="${pageContext.request.contextPath}/sector/edit/${userCategory.id}.html">
  <table>
+ 
+ 	<tr><td><form:hidden  path="id" ></form:hidden></td></tr>
     <tr>
         <td><form:label path="name">Name</form:label></td>
         <td><form:input path="name" /></td>

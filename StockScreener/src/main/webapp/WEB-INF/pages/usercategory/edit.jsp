@@ -26,6 +26,7 @@
 		<td><input type="submit" value="Edit" /></td>
 		<td></td>
 	</tr>
+	<tr><td><form:hidden  path="id" ></form:hidden></td></tr>
 </tbody>
 </table>
 </form:form>

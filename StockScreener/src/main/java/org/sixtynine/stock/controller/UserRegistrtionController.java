@@ -1,6 +1,8 @@
 package org.sixtynine.stock.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.sixtynine.stock.entity.BaseEntity;
 import org.sixtynine.stock.entity.User;
@@ -24,15 +26,29 @@ public class UserRegistrtionController {
 	public ModelAndView addUser() {
 		ModelAndView modelAndView = new ModelAndView("user/add");
 		modelAndView.addObject("user", new User());
+		
+		Map<UserCategory, String > userCategories = new HashMap<UserCategory, String>();  
+		
+		List<BaseEntity> userCategory = genericService
+				.findAll(UserCategory.class);
+		
+		//int i = 0 ; i < userCategory.size() ;i++
+		for( BaseEntity userCat : userCategory){
+			UserCategory uCat = (UserCategory)userCat; 
+			userCategories.put(uCat, uCat.getName());  
+		}
+		      
+        modelAndView.addObject("userCategoryMap" ,userCategories);
+		
 		return modelAndView;
 	}
 	
 	
 	@RequestMapping(value = "/user/add/process")
-	public ModelAndView addingUser(@ModelAttribute User user) {
+	public ModelAndView addingUser(@ModelAttribute User user ,
+			@PathVariable Integer catId) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		BaseEntity userCategory = genericService.findById(1,UserCategory.class);
-		user.setUserCategory((UserCategory)userCategory);
+		
 		genericService.saveOrUpdate(user);
 
 		String message = "User was successfully added.";
