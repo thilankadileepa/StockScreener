@@ -13,7 +13,11 @@ ${message}<br>
 	<br>
 	<a href="${pageContext.request.contextPath}/user/list.html">User list</a>
 	<br>
-	<a href="${pageContext.request.contextPath}/sector/list.html">Sector list</a>	
+	<a href="${pageContext.request.contextPath}/sector/list.html">Sector list</a>
+	<br>
+	<a href="${pageContext.request.contextPath}/company/list.html">Company list</a>	
+	<br>
+	<a href="${pageContext.request.contextPath}/module/list.html">Module list</a>	
 </p>
 </body>
 </html>
