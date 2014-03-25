@@ -8,6 +8,10 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 
+/**
+ * @author Thilanka
+ *
+ */
 public class ExcelReader {
 	public static void processData(FileInputStream file) {
 
