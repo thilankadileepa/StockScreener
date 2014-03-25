@@ -16,9 +16,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.sixtynine.stock.fileupload.FileUploadData;
+
 @Entity
 @Table(name = "DAILY_SECTOR_DATA")
-public class DailySectorData extends BaseEntity{
+public class DailySectorData extends BaseEntity implements FileUploadData {
 
 	private int id;
 	private Date date;
@@ -84,8 +86,8 @@ public class DailySectorData extends BaseEntity{
 		this.turnOver = turnOver;
 	}
 
-	@ManyToOne  
-	@JoinColumn(name = "SECTOR_ID")  
+	@ManyToOne
+	@JoinColumn(name = "SECTOR_ID")
 	public Sector getSector() {
 		return sector;
 	}
@@ -93,11 +95,10 @@ public class DailySectorData extends BaseEntity{
 	public void setSector(Sector sector) {
 		this.sector = sector;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		return (id==((DailySectorData)obj).getId());
+		return (id == ((DailySectorData) obj).getId());
 	}
-	
 
 }
