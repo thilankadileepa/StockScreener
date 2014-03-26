@@ -1,8 +1,8 @@
 package org.sixtynine.stock.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.sixtynine.stock.entity.BaseEntity;
 import org.sixtynine.stock.entity.User;
@@ -10,6 +10,8 @@ import org.sixtynine.stock.entity.UserCategory;
 import org.sixtynine.stock.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,15 +37,27 @@ public class UserRegistrtionController {
 	}
 
 	@RequestMapping(value = "/user/add/process")
-	public ModelAndView addingUser(@ModelAttribute User user) {
-		ModelAndView modelAndView = new ModelAndView("home");
+	public ModelAndView addingUser(@ModelAttribute User user ,@Valid User validUser ,BindingResult result ,Model m) {
+		
+		if(!result.hasErrors()){
+			ModelAndView modelAndView = new ModelAndView("home");
+			genericService.saveOrUpdate(user);
+	
+			String message = "User error added.";
+			modelAndView.addObject("message", message);
+			return modelAndView;
+		}else{
+			ModelAndView modelAndView = new ModelAndView("user/add");
+			modelAndView.addObject("user", new User());
 
-		genericService.saveOrUpdate(user);
-
-		String message = "User was successfully added.";
-		modelAndView.addObject("message", message);
-
-		return modelAndView;
+			m.addAttribute("message" , "User error added");
+			List<BaseEntity> userCategories = genericService
+					.findAll(UserCategory.class);
+			modelAndView.addObject("userCategoryMap", userCategories);
+			
+			return modelAndView;
+		}
+		
 	}
 
 	@RequestMapping(value = "/user/list")

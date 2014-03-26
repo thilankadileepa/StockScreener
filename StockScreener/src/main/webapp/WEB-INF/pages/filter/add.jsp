@@ -8,7 +8,7 @@
 
 <h1>Add Filter </h1>
 <p>Here you can add a new filter.</p>
-<form:form method="POST" commandName="filter" action="${pageContext.request.contextPath}/filter/add/process.html">
+<form:form method="POST" commandName="filter"  action="${pageContext.request.contextPath}/filter/add/process.html">
 	 <table>
 	    <tr>
 	    	<td><form:label path="module">Module :</form:label></td>

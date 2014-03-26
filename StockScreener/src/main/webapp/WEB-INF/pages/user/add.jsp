@@ -8,8 +8,11 @@
 
 <h1>Add User</h1>
 <p>Here you can add a new team.</p>
-<form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/user/add/process.html">
+<form:form method="POST" commandName="user" modelattribute="validUser" action="${pageContext.request.contextPath}/user/add/process.html">
 <table>
+	<tr>
+		<td>${message}</td>
+	</tr>
 	<tr>
     	<td>
     		User Category :
@@ -20,20 +23,24 @@
 	    </td> 
 	</tr>
     <tr>
-        <td>User Name</td>
+        <td><label for="userNameInput">User Name</label></td>
         <td><form:input path="userName" /></td>
+        <td><form:errors path="userName" cssclass="error"></form:errors></td>
     </tr>
     <tr>
         <td>Password :</td>
         <td><form:input path="password" /></td>
+        <td><form:errors path="password" cssclass="error"></form:errors></td>
     </tr>
     <tr>
         <td><form:label path="email">Email :</form:label></td>
         <td><form:input path="email" /></td>
+        <td><form:errors path="email" cssclass="error"></form:errors></td>
     </tr>
     <tr>
         <td><form:label path="telephone">Telephone :</form:label></td>
-        <td><form:input path="telephone" /></td> 
+        <td><form:input path="telephone" /></td>
+        <td><form:errors path="telephone" cssclass="error"></form:errors></td> 
     </tr>
     <tr>
         <td><form:label path="address">Address :</form:label></td>

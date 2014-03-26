@@ -18,7 +18,7 @@
 </thead>
 <tbody>
  
-<c:forEach var="filter" items="${filters}">
+<c:forEach var="filter" items="${filterList}">
 <tr>
 	<td>${filter.id}</td>
 	<td>${filter.name}</td>
