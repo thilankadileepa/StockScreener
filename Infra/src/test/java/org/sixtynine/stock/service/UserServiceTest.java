@@ -11,7 +11,6 @@ import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.sixtynine.stock.entity.User;
-import org.sixtynine.stock.entity.UserCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -53,7 +52,8 @@ public class UserServiceTest {
 
 	private User createUser(String name) {
 		User user = new User(name);
-		user.setUser(user);
+		user.setOwner(user);
+		System.out.println(userCategoryService.findById(1).getName());
 		user.setUserCategory(userCategoryService.findById(1));
 		userService.saveUser(user);
 		return user;
@@ -68,7 +68,7 @@ public class UserServiceTest {
 
 	@Test
 	public void testDeleteUser() throws Exception {
-		User user = createUser("Hasantha");
+		User user = createUser("Saminda");
 		assertNotNull(userService.findById(user.getId()));
 		userService.deleteUser(user.getId());
 		assertNull(userService.findById(user.getId()));

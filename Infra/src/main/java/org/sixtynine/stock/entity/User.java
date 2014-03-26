@@ -18,6 +18,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
@@ -25,14 +29,22 @@ import javax.persistence.Table;
 public class User extends BaseEntity{
 
 	private int id;
+	
+	@Size(min=2, max=100) 
 	private String userName;
+	
+	@Size(min=6, max=25) 
 	private String password;
+	
+	@NotEmpty @Email
 	private String email;
+	
+	@Size(min=10, max=16) 
 	private String telephone;
 	private String address;
 	private UserCategory userCategory;
-	private User user;
-	private Set<User> users ;
+	private User owner;
+	private Set<User> clients ;
 	private Set<Payment> payment ;
 	
 	public User() {
@@ -117,21 +129,21 @@ public class User extends BaseEntity{
 	//this annotation user to self references.
 	@ManyToOne(cascade={CascadeType.ALL}) 
 	@JoinColumn(name = "OWER_ID")
-	public User getUser() {
-		return user;
+	public User getOwner() {
+		return owner;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setOwner(User user) {
+		this.owner = user;
 	}
 
-	@OneToMany(mappedBy = "users") 
-	public Set<User> getUsers() {
-		return users;
+	@OneToMany(mappedBy = "clients") 
+	public Set<User> getClients() {
+		return clients;
 	}
 
-	public void setUsers(Set<User> users) {
-		this.users = users;
+	public void setClients(Set<User> users) {
+		this.clients = users;
 	}
 
 	@OneToMany(mappedBy = "user")  

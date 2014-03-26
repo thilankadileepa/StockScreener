@@ -8,15 +8,20 @@
 
 <h1>Add Filter </h1>
 <p>Here you can add a new filter.</p>
-<form:form method="POST" commandName="filter" action="${pageContext.request.contextPath}/filter/add/process.html">
+<form:form method="POST" commandName="filter"  action="${pageContext.request.contextPath}/filter/add/process.html">
 	 <table>
 	    <tr>
-	    	<td><form:label path="module">Module :</form:label></td>
-		    <td>  
-		        <ul>  
-		             <form:select path="module" items="${filterMap}">  
-	        		 </form:select>
-		        </ul>  
+	    	<td>Filter Category :</td>
+		    <td>
+		    	<form:select itemValue="id" itemLabel="filterType" path="filterCategory.id" items="${filterCategoriesMap}">  
+	        	</form:select>
+		    </td> 
+		</tr>
+		<tr>
+	    	<td>Module :</td>
+		    <td> 
+		    	<form:select itemValue="id" itemLabel="name" path="module.id" items="${moduleMap}">  
+	        	</form:select> 
 		    </td> 
 		</tr>
 	    <tr>
