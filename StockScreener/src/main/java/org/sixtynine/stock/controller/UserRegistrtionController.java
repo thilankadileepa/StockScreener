@@ -10,7 +10,6 @@ import org.sixtynine.stock.entity.UserCategory;
 import org.sixtynine.stock.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,27 +36,18 @@ public class UserRegistrtionController {
 	}
 
 	@RequestMapping(value = "/user/add/process")
-	public ModelAndView addingUser(@ModelAttribute User user ,@Valid User validUser ,BindingResult result ,Model m) {
-		
-		if(!result.hasErrors()){
+	public ModelAndView addingUser(@ModelAttribute @Valid User user,
+			BindingResult result) {
+
+		if (!result.hasErrors()) {
 			ModelAndView modelAndView = new ModelAndView("home");
 			genericService.saveOrUpdate(user);
-	
-			String message = "User error added.";
-			modelAndView.addObject("message", message);
 			return modelAndView;
-		}else{
+		} else {
 			ModelAndView modelAndView = new ModelAndView("user/add");
-			modelAndView.addObject("user", new User());
-
-			m.addAttribute("message" , "User error added");
-			List<BaseEntity> userCategories = genericService
-					.findAll(UserCategory.class);
-			modelAndView.addObject("userCategoryMap", userCategories);
-			
 			return modelAndView;
 		}
-		
+
 	}
 
 	@RequestMapping(value = "/user/list")
