@@ -29,7 +29,7 @@
     </tr>
     <tr>
         <td>Password :</td>
-        <td><form:input path="password" /></td>
+        <td><form:password path="password" /></td>
         <td><form:errors path="password" cssclass="error"></form:errors></td>
     </tr>
     <tr>
