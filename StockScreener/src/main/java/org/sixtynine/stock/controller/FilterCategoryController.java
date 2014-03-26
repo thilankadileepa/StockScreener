@@ -5,7 +5,6 @@ import java.util.List;
 import org.sixtynine.stock.entity.BaseEntity;
 import org.sixtynine.stock.entity.Filter;
 import org.sixtynine.stock.entity.FilterCategory;
-import org.sixtynine.stock.entity.Module;
 import org.sixtynine.stock.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,27 +19,21 @@ import org.springframework.web.servlet.ModelAndView;
  *
  */
 @Controller
-public class FilterController {
+public class FilterCategoryController {
 
 	@Autowired
 	private GenericService genericService;
 	
-	@RequestMapping(value = "/filter/add")
+	@RequestMapping(value = "/filtercategory/add")
 	public ModelAndView addFilter() {
-		ModelAndView modelAndView = new ModelAndView("filter/add");
-		modelAndView.addObject("filter", new Filter());		
-		
-		List<BaseEntity> filterCategory = genericService.findAll(FilterCategory.class);	
-		List<BaseEntity> module = genericService.findAll(Module.class);	
-		
-        modelAndView.addObject("filterCategoriesMap" ,filterCategory);
-        modelAndView.addObject("moduleMap" ,module);
+		ModelAndView modelAndView = new ModelAndView("filtercategory/add");
+		modelAndView.addObject("filterCategory", new FilterCategory());		
 		
 		return modelAndView;
 	}
 	
 	
-	@RequestMapping(value = "/filter/add/process")
+	@RequestMapping(value = "/filtercategory/add/process")
 	public ModelAndView addingFilter(@ModelAttribute Filter filter) {
 		ModelAndView modelAndView = new ModelAndView("home");
 		
@@ -53,39 +46,34 @@ public class FilterController {
 	}
 	
 	
-	@RequestMapping(value = "/filter/list")
+	@RequestMapping(value = "/filtercategory/list")
 	public ModelAndView listOfFilters() {
-		ModelAndView modelAndView = new ModelAndView("/filter/list");
+		ModelAndView modelAndView = new ModelAndView("/filtercategory/list");
 
-		List<BaseEntity> filterList = genericService
-				.findAll(Filter.class);
-		modelAndView.addObject("filterList", filterList);
+		List<BaseEntity> filterCategoryList = genericService
+				.findAll(FilterCategory.class);
+		modelAndView.addObject("filterCategoryList", filterCategoryList);
 
 		return modelAndView;
 	}
 	
 	
-	@RequestMapping(value = "/filter/edit/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/filtercategory/edit/{id}", method = RequestMethod.GET)
 	public ModelAndView editFilter(@PathVariable Integer id) {
-		ModelAndView modelAndView = new ModelAndView("/filter/edit");
-		BaseEntity filter = genericService.findById(id,Filter.class);
-		
-		List<BaseEntity> filterCategory = genericService.findAll(FilterCategory.class);	
-		List<BaseEntity> module = genericService.findAll(Module.class);	
-		
-        modelAndView.addObject("filterCategoriesMap" ,filterCategory);
-        modelAndView.addObject("moduleMap" ,module);        
-		modelAndView.addObject("filter", filter);
+		ModelAndView modelAndView = new ModelAndView("/filtercategory/edit");
+		BaseEntity filterCategory = genericService.findById(id,FilterCategory.class);
+	
+		modelAndView.addObject("filterCategory", filterCategory);
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/filter/edit/{id}", method = RequestMethod.POST)
-	public ModelAndView edditingTeam(@ModelAttribute Filter filter,
+	@RequestMapping(value = "/filtercategory/edit/{id}", method = RequestMethod.POST)
+	public ModelAndView edditingTeam(@ModelAttribute FilterCategory filterCategory,
 			@PathVariable Integer id) {
 
 		ModelAndView modelAndView = new ModelAndView("home");
-		genericService.saveOrUpdate(filter);
+		genericService.saveOrUpdate(filterCategory);
 
 		String message = "Team was successfully edited.";
 		modelAndView.addObject("message", message);
@@ -93,10 +81,10 @@ public class FilterController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/filter/delete/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/filtercategory/delete/{id}", method = RequestMethod.GET)
 	public ModelAndView deleteFilter(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		genericService.delete(id, Filter.class);
+		genericService.delete(id, FilterCategory.class);
 		String message = "Team was successfully deleted.";
 		modelAndView.addObject("message", message);
 		return modelAndView;

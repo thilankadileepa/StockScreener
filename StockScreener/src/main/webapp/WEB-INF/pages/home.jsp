@@ -19,7 +19,11 @@ ${message}<br>
 	<br>
 	<a href="${pageContext.request.contextPath}/company/list.html">Company list</a>	
 	<br>
-	<a href="${pageContext.request.contextPath}/module/list.html">Module list</a>	
+	<a href="${pageContext.request.contextPath}/module/list.html">Module list</a>
+	<br>
+	<a href="${pageContext.request.contextPath}/filtercategory/list.html">Filter list</a>	
+	<br>
+	<a href="${pageContext.request.contextPath}/filter/list.html">Filter list</a>		
 </p>
 </body>
 </html>

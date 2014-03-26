@@ -8,23 +8,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Filter List</title>
+<title>Filter Category List</title>
 </head>
 <body>
-<h1>List of filter</h1>
-<p>Here you can see the list of the filter, edit them, remove or update.</p>
+<h1>List of Filters</h1>
+<p>Here you can see the list of the Filters, edit them, remove or update.</p>
 <table border="1px" cellpadding="0" cellspacing="0" >
 <thead>
 </thead>
 <tbody>
  
-<c:forEach var="filter" items="${filterList}">
+<c:forEach var="filterCategory" items="${filterCategoryList}">
 <tr>
-	<td>${filter.id}</td>
-	<td>${filter.filterValues}</td>
+	<td>${filterCategory.id}</td>
+	<td>${filterCategory.filterType}</td>	
 	<td>
-	<a href="${pageContext.request.contextPath}/filter/edit/${filter.id}.html">Edit</a><br/>
-	<a href="${pageContext.request.contextPath}/filter/delete/${filter.id}.html">Delete</a><br/>
+	<a href="${pageContext.request.contextPath}/filtercategory/edit/${filterCategory.id}.html">Edit</a><br/>
+	<a href="${pageContext.request.contextPath}/filtercategory/delete/${filterCategory.id}.html">Delete</a><br/>
 	</td>
 </tr>
 </c:forEach>

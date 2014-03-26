@@ -9,7 +9,6 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.sixtynine.stock.entity.AnnualShareData;
 import org.sixtynine.stock.entity.QuarterlyShareData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
