@@ -24,14 +24,14 @@ public class UserCategoryController {
 	private GenericService genericService;
 
 	@RequestMapping(value = "/usercategory/add")
-	public ModelAndView addTeamPage() {
+	public ModelAndView addUserCategoryPage() {
 		ModelAndView modelAndView = new ModelAndView("usercategory/add");
 		modelAndView.addObject("userCategory", new UserCategory());
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/usercategory/add/process")
-	public ModelAndView addingTeam(@ModelAttribute UserCategory userCategory) {
+	public ModelAndView addUserCategory(@ModelAttribute UserCategory userCategory) {
 
 		ModelAndView modelAndView = new ModelAndView("home");
 		genericService.saveOrUpdate(userCategory);
@@ -43,7 +43,7 @@ public class UserCategoryController {
 	}
 
 	@RequestMapping(value = "/usercategory/list")
-	public ModelAndView listOfTeams() {
+	public ModelAndView listUserCategories() {
 		ModelAndView modelAndView = new ModelAndView("/usercategory/list");
 
 		List<BaseEntity> userCategories = genericService
@@ -54,7 +54,7 @@ public class UserCategoryController {
 	}
 
 	@RequestMapping(value = "/usercategory/edit/{id}", method = RequestMethod.GET)
-	public ModelAndView editTeamPage(@PathVariable Integer id) {
+	public ModelAndView editUserCategory(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("/usercategory/edit");
 		BaseEntity userCategory = genericService.findById(id,
 				UserCategory.class);
@@ -63,7 +63,7 @@ public class UserCategoryController {
 	}
 
 	@RequestMapping(value = "/usercategory/edit/{id}", method = RequestMethod.POST)
-	public ModelAndView edditingTeam(@ModelAttribute UserCategory userCategory,
+	public ModelAndView edditingUserCategory(@ModelAttribute UserCategory userCategory,
 			@PathVariable Integer id) {
 
 		ModelAndView modelAndView = new ModelAndView("home");
@@ -77,7 +77,7 @@ public class UserCategoryController {
 	}
 
 	@RequestMapping(value = "/usercategory/delete/{id}", method = RequestMethod.GET)
-	public ModelAndView deleteTeam(@PathVariable Integer id) {
+	public ModelAndView deleteUserCategory(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("home");
 		genericService.delete(id, UserCategory.class);
 		String message = "Team was successfully deleted.";
