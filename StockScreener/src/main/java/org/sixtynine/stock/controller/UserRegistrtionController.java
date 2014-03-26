@@ -21,35 +21,23 @@ public class UserRegistrtionController {
 
 	@Autowired
 	private GenericService genericService;
-	
+
 	@RequestMapping(value = "/user/add")
 	public ModelAndView addUser() {
 		ModelAndView modelAndView = new ModelAndView("user/add");
 		modelAndView.addObject("user", new User());
-		
-		Map<Integer, String > userCategories = new HashMap<Integer, String>();  
-		
-		List<BaseEntity> userCategory = genericService
+
+		List<BaseEntity> userCategories = genericService
 				.findAll(UserCategory.class);
-		
-		//int i = 0 ; i < userCategory.size() ;i++
-		for( BaseEntity userCat : userCategory){
-			UserCategory uCat = (UserCategory)userCat; 
-			userCategories.put(uCat.getId(), uCat.getName());  
-		}
-		      
-        modelAndView.addObject("userCategoryMap" ,userCategories);
-		
+		modelAndView.addObject("userCategoryMap", userCategories);
+
 		return modelAndView;
 	}
-	
-	
-	@RequestMapping(value = "/user/add/process/")
-	public ModelAndView addingUser(@ModelAttribute User user ,
-			@PathVariable Integer catId) {
+
+	@RequestMapping(value = "/user/add/process")
+	public ModelAndView addingUser(@ModelAttribute User user) {
 		ModelAndView modelAndView = new ModelAndView("home");
-		System.out.println(catId);
-		
+
 		genericService.saveOrUpdate(user);
 
 		String message = "User was successfully added.";
@@ -57,29 +45,25 @@ public class UserRegistrtionController {
 
 		return modelAndView;
 	}
-	
-	
+
 	@RequestMapping(value = "/user/list")
 	public ModelAndView listOfTeams() {
 		ModelAndView modelAndView = new ModelAndView("/user/list");
 
-		List<BaseEntity> users = genericService
-				.findAll(User.class);
+		List<BaseEntity> users = genericService.findAll(User.class);
 		modelAndView.addObject("users", users);
 
 		return modelAndView;
 	}
-	
-	
+
 	@RequestMapping(value = "/user/edit/{id}", method = RequestMethod.GET)
 	public ModelAndView editTeamPage(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("/user/edit");
-		BaseEntity user = genericService.findById(id,
-				User.class);
+		BaseEntity user = genericService.findById(id, User.class);
 		modelAndView.addObject("user", user);
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/user/edit/{id}", method = RequestMethod.POST)
 	public ModelAndView edditingTeam(@ModelAttribute User user,
 			@PathVariable Integer id) {
@@ -93,7 +77,7 @@ public class UserRegistrtionController {
 
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "/user/delete/{id}", method = RequestMethod.GET)
 	public ModelAndView deleteTeam(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("home");
@@ -102,6 +86,5 @@ public class UserRegistrtionController {
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
-	
-	
+
 }
