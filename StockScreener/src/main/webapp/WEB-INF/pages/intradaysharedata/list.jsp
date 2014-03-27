@@ -8,32 +8,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>User List</title>
+<title>Filter Category List</title>
 </head>
 <body>
-<h1>List of user</h1>
-<p>Here you can see the list of the user, edit them, remove or update.</p>
+<h1>List of Filters</h1>
+<p>Here you can see the list of the Filters, edit them, remove or update.</p>
 <table border="1px" cellpadding="0" cellspacing="0" >
 <thead>
 </thead>
 <tbody>
  
-<c:forEach var="user" items="${users}">
+<c:forEach var="intradayShareData" items="${intradayShareDataList}">
 <tr>
-	<td>${user.id}</td>
-	<td>${user.userName}</td>
-	<td>${user.email}</td>	
-	<td>${user.telephone}</td>		
+	<td>${intradayShareData.id}</td>
+	<td>${intradayShareData.tradeVolume}</td>	
 	<td>
-	<a href="${pageContext.request.contextPath}/user/edit/${user.id}.html">Edit</a><br/>
-	<a href="${pageContext.request.contextPath}/user/delete/${user.id}.html">Delete</a><br/>
+	<a href="${pageContext.request.contextPath}/intradaysharedata/edit/${intradayShareData.id}.html">Edit</a><br/>
+	<a href="${pageContext.request.contextPath}/intradaysharedata/delete/${intradayShareData.id}.html">Delete</a><br/>
 	</td>
 </tr>
 </c:forEach>
 </tbody>
 </table>
 
-<p><a href="${pageContext.request.contextPath}/user/add.html">Add User</a></p>
 <p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>
 
 </body>

@@ -17,12 +17,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * @author Thilan
+ * 
+ * this class use to add ,  edit and delete user data
+ *
+ */
+
 @Controller
 public class UserRegistrtionController {
 
 	@Autowired
 	private GenericService genericService;
-
+	
+	/*
+	 * This method use to set user adding view
+	 * 
+	 */
 	@RequestMapping(value = "/user/add")
 	public ModelAndView addUser() {
 		ModelAndView modelAndView = new ModelAndView("user/add");
@@ -35,12 +46,20 @@ public class UserRegistrtionController {
 		return modelAndView;
 	}
 
+	/*
+	 * This method use to save user category
+	 * 
+	 */
 	@RequestMapping(value = "/user/add/process")
 	public ModelAndView addingUser(@ModelAttribute @Valid User user,
 			BindingResult result) {
 
 		if (!result.hasErrors()) {
-			ModelAndView modelAndView = new ModelAndView("home");
+			ModelAndView modelAndView = new ModelAndView("/user/list");
+
+			List<BaseEntity> users = genericService.findAll(User.class);
+			modelAndView.addObject("users", users);
+			
 			genericService.saveOrUpdate(user);
 			return modelAndView;
 		} else {
@@ -50,6 +69,10 @@ public class UserRegistrtionController {
 
 	}
 
+	/*
+	 * This method use to view list of users
+	 * 
+	 */
 	@RequestMapping(value = "/user/list")
 	public ModelAndView listOfTeams() {
 		ModelAndView modelAndView = new ModelAndView("/user/list");
@@ -60,16 +83,24 @@ public class UserRegistrtionController {
 		return modelAndView;
 	}
 
+	/*
+	 * This method use to set user data into edit view
+	 * 
+	 */
 	@RequestMapping(value = "/user/edit/{id}", method = RequestMethod.GET)
-	public ModelAndView editTeamPage(@PathVariable Integer id) {
+	public ModelAndView editUser(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("/user/edit");
 		BaseEntity user = genericService.findById(id, User.class);
 		modelAndView.addObject("user", user);
 		return modelAndView;
 	}
 
+	/*
+	 * This method use to update user
+	 * 
+	 */
 	@RequestMapping(value = "/user/edit/{id}", method = RequestMethod.POST)
-	public ModelAndView edditingTeam(@ModelAttribute User user,
+	public ModelAndView edditingUser(@ModelAttribute User user,
 			@PathVariable Integer id) {
 
 		ModelAndView modelAndView = new ModelAndView("home");
@@ -82,8 +113,12 @@ public class UserRegistrtionController {
 		return modelAndView;
 	}
 
+	/*
+	 * This method use to delete user.
+	 * 
+	 */
 	@RequestMapping(value = "/user/delete/{id}", method = RequestMethod.GET)
-	public ModelAndView deleteTeam(@PathVariable Integer id) {
+	public ModelAndView deleteUser(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("home");
 		genericService.delete(id, User.class);
 		String message = "Team was successfully deleted.";

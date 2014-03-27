@@ -6,17 +6,16 @@
 <title>User Manager</title>
 
 <link href="<c:url value="/resources/css/common.css" />" rel="stylesheet" type="text/css" >
+<script type="text/javascript" src="/resources/js/jquery-1.11.0.min.js"></script>
 
 </head>
 <body> 
 
 <h1>Add User</h1>
 <p>Here you can add a new team.</p>
-<form:form method="POST" commandName="user" modelattribute="validUser" action="${pageContext.request.contextPath}/user/add/process.html">
+<form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/user/add/process.html">
+<div>${message}</div>
 <table>
-	<tr>
-		<td>${message}</td>
-	</tr>
 	<tr>
     	<td>
     		User Category :
@@ -35,6 +34,11 @@
         <td>Password :</td>
         <td><form:password path="password" /></td>
         <td><form:errors path="password" cssClass="error"></form:errors></td>
+    </tr>
+    <tr>
+        <td>Conform Password :</td>
+        <td><form:password path="comfromPassword" /></td>
+        <td><span id="confromPw"></span></td>
     </tr>
     <tr>
         <td><form:label path="email">Email :</form:label></td>
