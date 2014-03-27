@@ -2,7 +2,11 @@ package org.sixtynine.stock.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletRequest;
 import javax.validation.Valid;
+
+import net.tanesha.recaptcha.ReCaptchaImpl;
+import net.tanesha.recaptcha.ReCaptchaResponse;
 
 import org.sixtynine.stock.entity.BaseEntity;
 import org.sixtynine.stock.entity.User;
@@ -10,11 +14,14 @@ import org.sixtynine.stock.entity.UserCategory;
 import org.sixtynine.stock.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -30,6 +37,9 @@ public class UserRegistrtionController {
 	@Autowired
 	private GenericService genericService;
 	
+	@Autowired
+	ReCaptchaImpl reCaptcha;
+	
 	/*
 	 * This method use to set user adding view
 	 * 
@@ -39,8 +49,7 @@ public class UserRegistrtionController {
 		ModelAndView modelAndView = new ModelAndView("user/add");
 		modelAndView.addObject("user", new User());
 
-		List<BaseEntity> userCategories = genericService
-				.findAll(UserCategory.class);
+		List<BaseEntity> userCategories = genericService.findAll(UserCategory.class);
 		modelAndView.addObject("userCategoryMap", userCategories);
 
 		return modelAndView;
@@ -52,9 +61,16 @@ public class UserRegistrtionController {
 	 */
 	@RequestMapping(value = "/user/add/process")
 	public ModelAndView addingUser(@ModelAttribute @Valid User user,
-			BindingResult result) {
+			BindingResult result , @RequestParam("recaptcha_challenge_field") String challangeField, 
+			@RequestParam("recaptcha_response_field") String responseField, 
+			ServletRequest servletRequest,
+			SessionStatus sessionStatus ,Model model) {
+		
+		String remoteAddress = servletRequest.getRemoteAddr();
+		ReCaptchaResponse reCaptchaResponse = this.reCaptcha.checkAnswer(remoteAddress, challangeField, responseField);
+		System.out.println(reCaptchaResponse.getErrorMessage());
 
-		if (!result.hasErrors()) {
+		if (!result.hasErrors() && reCaptchaResponse.isValid()) {
 			ModelAndView modelAndView = new ModelAndView("/user/list");
 
 			List<BaseEntity> users = genericService.findAll(User.class);
@@ -62,8 +78,17 @@ public class UserRegistrtionController {
 			
 			genericService.saveOrUpdate(user);
 			return modelAndView;
-		} else {
+		} else {	
 			ModelAndView modelAndView = new ModelAndView("user/add");
+			
+			List<BaseEntity> userCategories = genericService.findAll(UserCategory.class);
+			modelAndView.addObject("userCategoryMap", userCategories);
+			
+    		if(!reCaptchaResponse.isValid()) {
+    			String messageRecaptcha = "reCAPTCHA is invalid.";
+    			modelAndView.addObject("messageRecaptcha", messageRecaptcha);
+    		}  
+			
 			return modelAndView;
 		}
 

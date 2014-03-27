@@ -24,6 +24,10 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
+/**
+ * @author Thilan
+ *
+ */
 @Entity
 @Table(name = "USER")
 public class User extends BaseEntity{
@@ -35,7 +39,6 @@ public class User extends BaseEntity{
 	
 	@Size(min=6, max=25) 
 	private String password;
-	private String comfromPassword;
 	
 	@NotEmpty @Email
 	private String email;
@@ -160,14 +163,7 @@ public class User extends BaseEntity{
 	public void setPayment(Set<Payment> payment) {
 		this.payment = payment;
 	}
-	
-	
-	public String getComfromPassword() {
-		return comfromPassword;
-	}
 
-	public void setComfromPassword(String comfromPassword) {
-		this.comfromPassword = comfromPassword;
-	}
+	
 
 }
