@@ -9,11 +9,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Edit team page</title>
+<title>Edit User Category</title>
 </head>
 <body>
-<h1>Edit team page</h1>
-<p>Here you can edit the existing team.</p>
+<h1>Edit user category</h1>
+<p>Here you can edit the existing user category.</p>
 <p>${message}</p>
 <form:form method="POST" commandName="userCategory" action="${pageContext.request.contextPath}/usercategory/edit/${userCategory.id}.html">
 <table>
@@ -21,6 +21,7 @@
 	<tr>
 		<td>Name:</td>
 		<td><form:input path="name" /></td>
+		<td><form:errors path="name" cssClass="error"></form:errors></td>
 	</tr>	
 	<tr>
 		<td><input type="submit" value="Edit" /></td>

@@ -2,12 +2,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<link href="<c:url value="/resources/css/common.css" />" rel="stylesheet" type="text/css" >
+<title>User Category - Add</title>
 </head>
 <body> 
 
-<h1>Add team page</h1>
-<p>Here you can add a new team.</p>
+<h1>Add User Category</h1>
+<p>Here you can add a new user category.</p>
 <form:form method="POST" commandName="userCategory" action="${pageContext.request.contextPath}/usercategory/add/process.html">
 <table>
 <tbody>

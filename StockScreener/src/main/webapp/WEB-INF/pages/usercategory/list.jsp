@@ -12,12 +12,11 @@
 </head>
 <body>
 <h1>List of teams</h1>
-<p>Here you can see the list of the teams, edit them, remove or update.</p>
+<p>Here you can see the list of the user category, edit them, remove or update.</p>
 <table border="1px" cellpadding="0" cellspacing="0" >
 <thead>
 </thead>
 <tbody>
- 
 <c:forEach var="userCategory" items="${userCategories}">
 <tr>
 	<td>${userCategory.id}</td>
@@ -31,6 +30,7 @@
 </tbody>
 </table>
 
+<p><a href="${pageContext.request.contextPath}/usercategory/add.html">Add User Category</a></p>
 <p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>
 
 </body>

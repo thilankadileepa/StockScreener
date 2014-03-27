@@ -23,59 +23,99 @@ public class UserCategoryController {
 	@Autowired
 	private GenericService genericService;
 
+	
+	/*
+	 * This method use to set user category adding view
+	 * 
+	 */
 	@RequestMapping(value = "/usercategory/add")
 	public ModelAndView addUserCategoryPage() {
+		//create user category adding view
 		ModelAndView modelAndView = new ModelAndView("usercategory/add");
+		//assign user category object to view
 		modelAndView.addObject("userCategory", new UserCategory());
 		return modelAndView;
 	}
 
+	 /*
+	 * This method use to save user category
+	 * 
+	 */
+	
 	@RequestMapping(value = "/usercategory/add/process")
 	public ModelAndView addUserCategory(@ModelAttribute UserCategory userCategory) {
 
-		ModelAndView modelAndView = new ModelAndView("home");
 		genericService.saveOrUpdate(userCategory);
-
-		String message = "Team was successfully added.";
+		
+		//in this method use to create list view..
+		ModelAndView modelAndView = new ModelAndView("/usercategory/list");	
+		
+		List<BaseEntity> userCategories = genericService.findAll(UserCategory.class);		
+		String message = "User Category was successfully added.";
+		
+		//assign data to list view
+		modelAndView.addObject("userCategories", userCategories);
 		modelAndView.addObject("message", message);
 
 		return modelAndView;
 	}
 
+	
+	/*
+	 * This method use to view list of user categories
+	 * 
+	 */
 	@RequestMapping(value = "/usercategory/list")
 	public ModelAndView listUserCategories() {
 		ModelAndView modelAndView = new ModelAndView("/usercategory/list");
 
-		List<BaseEntity> userCategories = genericService
-				.findAll(UserCategory.class);
+		//get all user categories 
+		List<BaseEntity> userCategories = genericService.findAll(UserCategory.class);
 		modelAndView.addObject("userCategories", userCategories);
 
 		return modelAndView;
 	}
 
+	/*
+	 * This method use to set user category data into edit view
+	 * 
+	 */
 	@RequestMapping(value = "/usercategory/edit/{id}", method = RequestMethod.GET)
 	public ModelAndView editUserCategory(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("/usercategory/edit");
-		BaseEntity userCategory = genericService.findById(id,
-				UserCategory.class);
+		
+		//get user category using given id..
+		BaseEntity userCategory = genericService.findById(id,UserCategory.class);
 		modelAndView.addObject("userCategory", userCategory);
 		return modelAndView;
 	}
 
+	/*
+	 * This method use to update user category
+	 * 
+	 */
 	@RequestMapping(value = "/usercategory/edit/{id}", method = RequestMethod.POST)
 	public ModelAndView edditingUserCategory(@ModelAttribute UserCategory userCategory,
 			@PathVariable Integer id) {
 
-		ModelAndView modelAndView = new ModelAndView("home");
-
 		genericService.saveOrUpdate(userCategory);
+		
+		ModelAndView modelAndView = new ModelAndView("/usercategory/list");
 
+		//get all user categories 
+		List<BaseEntity> userCategories = genericService.findAll(UserCategory.class);
+		modelAndView.addObject("userCategories", userCategories);
+		
 		String message = "Team was successfully edited.";
 		modelAndView.addObject("message", message);
 
 		return modelAndView;
 	}
 
+	/*
+	 * This method use to delete user category
+	 * 
+	 */
 	@RequestMapping(value = "/usercategory/delete/{id}", method = RequestMethod.GET)
 	public ModelAndView deleteUserCategory(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("home");
