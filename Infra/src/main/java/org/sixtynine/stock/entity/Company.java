@@ -16,13 +16,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "COMPANY")
 public class Company extends BaseEntity{
 
 	private int id;
+	
+	@Size(min=3) 
 	private String code;
+	
+	@NotEmpty
 	private String name;
 	private Sector sector;
 	private Set<AnnualShareData> annualShareData;

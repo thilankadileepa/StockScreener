@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * @author Thilan
  *
@@ -20,6 +22,8 @@ import javax.persistence.Table;
 public class Module extends BaseEntity{
 	
 	private int id;
+	
+	@NotEmpty
 	private String name;
 	private Set<Filter> filter ;
 	private Set<CategoryModule> categoryModule ;
