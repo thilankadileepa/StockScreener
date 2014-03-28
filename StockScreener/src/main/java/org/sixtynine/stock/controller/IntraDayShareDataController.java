@@ -1,42 +1,93 @@
 package org.sixtynine.stock.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
-import org.sixtynine.stock.model.IntraDayShareData;
+import javax.validation.Valid;
+
+import org.sixtynine.stock.entity.BaseEntity;
+import org.sixtynine.stock.entity.Company;
+import org.sixtynine.stock.entity.IntradayShareData;
+import org.sixtynine.stock.service.GenericService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@SessionAttributes
 public class IntraDayShareDataController {
 
-	@RequestMapping(value = "/addIntraDayShareData", method = RequestMethod.POST)
-	public String addIntraDayShareData(@ModelAttribute("intraDayShareData") IntraDayShareData intraDayShareData,
-			BindingResult result) {
+	@Autowired
+	private GenericService genericService;
 
-		System.out.println("No of Trades:" + intraDayShareData.getPercentageChange()
-				+ "Turn Over:" + intraDayShareData.getClosingPrice());
+	@RequestMapping(value = "/intradaysharedata/add")
+	public ModelAndView addUser() {
+		ModelAndView modelAndView = new ModelAndView("intradaysharedata/add");
+		modelAndView.addObject("intradayShareData", new IntradayShareData());
 
-		return "redirect:intradayshares.htm";
+		List<BaseEntity> companies = genericService.findAll(Company.class);
+		modelAndView.addObject("companyMap", companies);
+
+		return modelAndView;
 	}
 
-	@RequestMapping("/intradayshares")
-	public ModelAndView showIntraDayShareData() {
-		ModelAndView mv = new ModelAndView("intradaysharedata", "command", new IntraDayShareData());
-		
-		 Map< String, String > sector1 = new HashMap<String, String>();  
-	        sector1.put("BFI", "Bank");  
-	        sector1.put("BFT", "Finance");  
-	        sector1.put("C&P", "Cop");  
-	        
-		mv.addObject("companyMap" ,sector1);
-		return mv;
+	@RequestMapping(value = "/intradaysharedata/add/process")
+	public ModelAndView addingUser(@ModelAttribute @Valid IntradayShareData intradayShareData,
+			BindingResult result) {
+
+		if (!result.hasErrors()) {
+			ModelAndView modelAndView = new ModelAndView("home");
+			genericService.saveOrUpdate(intradayShareData);
+			return modelAndView;
+		} else {
+			ModelAndView modelAndView = new ModelAndView("intradaysharedata/add");
+			return modelAndView;
+		}
+
+	}
+
+	@RequestMapping(value = "/intradaysharedata/list")
+	public ModelAndView listOfTeams() {
+		ModelAndView modelAndView = new ModelAndView("/intradaysharedata/list");
+
+		List<BaseEntity> intradayShareDataList = genericService.findAll(IntradayShareData.class);
+		modelAndView.addObject("intradayShareDataList", intradayShareDataList);
+
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/intradaysharedata/edit/{id}", method = RequestMethod.GET)
+	public ModelAndView editTeamPage(@PathVariable Integer id) {
+		ModelAndView modelAndView = new ModelAndView("/intradaysharedata/edit");
+		BaseEntity intradayShareData = genericService.findById(id, IntradayShareData.class);
+		modelAndView.addObject("intradayShareData", intradayShareData);
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/intradaysharedata/edit/{id}", method = RequestMethod.POST)
+	public ModelAndView edditingTeam(@ModelAttribute IntradayShareData intradayShareData,
+			@PathVariable Integer id) {
+
+		ModelAndView modelAndView = new ModelAndView("home");
+
+		genericService.saveOrUpdate(intradayShareData);
+
+		String message = "Team was successfully edited.";
+		modelAndView.addObject("message", message);
+
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/intradaysharedata/delete/{id}", method = RequestMethod.GET)
+	public ModelAndView deleteTeam(@PathVariable Integer id) {
+		ModelAndView modelAndView = new ModelAndView("home");
+		genericService.delete(id, IntradayShareData.class);
+		String message = "Team was successfully deleted.";
+		modelAndView.addObject("message", message);
+		return modelAndView;
 	}
 	
 }

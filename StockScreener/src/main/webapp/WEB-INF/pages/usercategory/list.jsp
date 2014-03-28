@@ -11,7 +11,7 @@
 <title>User Category List</title>
 </head>
 <body>
-<h1>List of teams</h1>
+<h1>List of user category</h1>
 <p>Here you can see the list of the user category, edit them, remove or update.</p>
 <table border="1px" cellpadding="0" cellspacing="0" >
 <thead>

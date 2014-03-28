@@ -6,9 +6,10 @@
 </head>
 <body> 
 
-<h1>Add Sector page</h1>
-<p>Here you can add a new team.</p>
+<h1>Add Sector</h1>
+<p>Here you can add a new sector.</p>
 <form:form method="POST" commandName="sector" action="${pageContext.request.contextPath}/sector/add/process.html">
+<div>${message}</div>
  <table>
     <tr>
         <td><form:label path="name">Name</form:label></td>

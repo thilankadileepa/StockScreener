@@ -28,4 +28,8 @@
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
+	<bean id="reCaptcha" class="net.tanesha.recaptcha.ReCaptchaImpl">
+        <property name="privateKey" value="your_recaptcha_private_key"/>
+    </bean>
+	
 </beans> 

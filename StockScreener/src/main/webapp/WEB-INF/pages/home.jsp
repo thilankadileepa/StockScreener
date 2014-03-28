@@ -1,17 +1,14 @@
 <html>  
 <head>  
 
-<title>Being Java Guys | Hello World</title>  
+<title>Stock Screener</title>  
 </head>  
 <body>  
 <h1>Home page</h1>
 <p>
 ${message}<br>
-	<a href="${pageContext.request.contextPath}/usercategory/add.html">Add new User Category</a>
 	<br>
 	<a href="${pageContext.request.contextPath}/usercategory/list.html">User Category list</a>
-	<br>
-	<a href="${pageContext.request.contextPath}/user/add.html">Add new User</a>
 	<br>
 	<a href="${pageContext.request.contextPath}/user/list.html">User list</a>
 	<br>
@@ -21,9 +18,19 @@ ${message}<br>
 	<br>
 	<a href="${pageContext.request.contextPath}/module/list.html">Module list</a>
 	<br>
-	<a href="${pageContext.request.contextPath}/filtercategory/list.html">Filter list</a>	
+	<a href="${pageContext.request.contextPath}/filtercategory/list.html">Filter Category list</a>	
 	<br>
-	<a href="${pageContext.request.contextPath}/filter/list.html">Filter list</a>		
+	<a href="${pageContext.request.contextPath}/filter/list.html">Filter list</a>
+	<br>
+	<a href="${pageContext.request.contextPath}/dailysectordata/list.html">Daily Sector Data list</a>
+	<br>
+	<a href="${pageContext.request.contextPath}/dailysharedata/list.html">Daily Share Data list</a>	
+	<br>
+	<a href="${pageContext.request.contextPath}/intradaysectordata/list.html">Intraday Sector Data list</a>	
+	<br>
+	<a href="${pageContext.request.contextPath}/intradaysharedata/list.html">Intraday share Data list</a>
+	<br>
+	<a href="${pageContext.request.contextPath}/quarterlysharedata/list.html">Quarterly share Data list</a>			
 </p>
 </body>
 </html>

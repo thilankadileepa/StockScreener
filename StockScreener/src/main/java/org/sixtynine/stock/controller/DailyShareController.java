@@ -1,12 +1,16 @@
 package org.sixtynine.stock.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
-import org.sixtynine.stock.model.DailyShareData;
+import org.sixtynine.stock.entity.BaseEntity;
+import org.sixtynine.stock.entity.Company;
+import org.sixtynine.stock.entity.DailyShareData;
+import org.sixtynine.stock.entity.FilterCategory;
+import org.sixtynine.stock.service.GenericService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -16,27 +20,76 @@ import org.springframework.web.servlet.ModelAndView;
 @SessionAttributes
 public class DailyShareController {
 
-	@RequestMapping(value = "/addDailyShareData", method = RequestMethod.POST)
-	public String addDailyShareData(@ModelAttribute("dailyShareData") DailyShareData dailyShareData,
-			BindingResult result) {
-
-		System.out.println("No of Trades:" + dailyShareData.getSharePrice()
-				+ "Turn Over:" + dailyShareData.getTurnOver());
-
-		return "redirect:dailyshares.htm";
-	}
-
-	@RequestMapping("/dailyshares")
-	public ModelAndView showDailyShareData() {
-		ModelAndView mv = new ModelAndView("dailysharedata", "command", new DailyShareData());
+	@Autowired
+	private GenericService genericService;
+	
+	@RequestMapping(value = "/dailysharedata/add")
+	public ModelAndView addDailyShareData() {
+		ModelAndView modelAndView = new ModelAndView("dailysharedata/add");
+		modelAndView.addObject("dailysharedata", new DailyShareData());	
 		
-		 Map< String, String > sector1 = new HashMap<String, String>();  
-	        sector1.put("BFI", "Bank");  
-	        sector1.put("BFT", "Finance");  
-	        sector1.put("C&P", "Cop");  
-	        
-		mv.addObject("companyMap" ,sector1);
-		return mv;
+		List<BaseEntity> compaies = genericService.findAll(Company.class); 
+		modelAndView.addObject("companyMap", compaies);
+		
+		return modelAndView;
+	}
+	
+	
+	@RequestMapping(value = "/dailysharedata/add/process")
+	public ModelAndView addingDailyShareDatar(@ModelAttribute DailyShareData dailyShareData) {
+		ModelAndView modelAndView = new ModelAndView("home");
+		
+		genericService.saveOrUpdate(dailyShareData);
+
+		String message = "User was successfully added.";
+		modelAndView.addObject("message", message);
+
+		return modelAndView;
+	}
+	
+	
+	@RequestMapping(value = "/dailysharedata/list")
+	public ModelAndView listOfDailyShareData() {
+		ModelAndView modelAndView = new ModelAndView("/dailysharedata/list");
+
+		List<BaseEntity> dailyShareDataList = genericService
+				.findAll(FilterCategory.class);
+		modelAndView.addObject("DailyShareDataList", dailyShareDataList);
+
+		return modelAndView;
+	}
+	
+	
+	@RequestMapping(value = "/dailysharedata/edit/{id}", method = RequestMethod.GET)
+	public ModelAndView editDailyShareData(@PathVariable Integer id) {
+		ModelAndView modelAndView = new ModelAndView("/dailysharedata/edit");
+		BaseEntity dailyShareData = genericService.findById(id,DailyShareData.class);
+	
+		modelAndView.addObject("dailyShareData", dailyShareData);
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/dailysharedata/edit/{id}", method = RequestMethod.POST)
+	public ModelAndView edditingDailyShareData(@ModelAttribute DailyShareData dailyShareData,
+			@PathVariable Integer id) {
+
+		ModelAndView modelAndView = new ModelAndView("home");
+		genericService.saveOrUpdate(dailyShareData);
+
+		String message = "Team was successfully edited.";
+		modelAndView.addObject("message", message);
+
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/dailysharedata/delete/{id}", method = RequestMethod.GET)
+	public ModelAndView deleteDailyShareData(@PathVariable Integer id) {
+		ModelAndView modelAndView = new ModelAndView("home");
+		genericService.delete(id, DailyShareData.class);
+		String message = "Team was successfully deleted.";
+		modelAndView.addObject("message", message);
+		return modelAndView;
 	}
 	
 }

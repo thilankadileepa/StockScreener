@@ -9,13 +9,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Edit team page</title>
+<title>Edit Sector</title>
 </head>
 <body>
-<h1>Edit team page</h1>
-<p>Here you can edit the existing team.</p>
-<p>${message}</p>
+<h1>Edit sector</h1>
+<p>Here you can edit the existing sector.</p>
 <form:form method="POST" commandName="sector" action="${pageContext.request.contextPath}/sector/edit/${sector.id}.html">
+<div>${message}</div>
  <table>
  
  	<tr><td><form:hidden  path="id" ></form:hidden></td></tr>

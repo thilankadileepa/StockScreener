@@ -24,6 +24,10 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
+/**
+ * @author Thilan
+ *
+ */
 @Entity
 @Table(name = "USER")
 public class User extends BaseEntity{
@@ -39,7 +43,7 @@ public class User extends BaseEntity{
 	@NotEmpty @Email
 	private String email;
 	
-	@Size(min=10, max=16) 
+	@Size(min=10) 
 	private String telephone;
 	private String address;
 	private UserCategory userCategory;
@@ -115,7 +119,9 @@ public class User extends BaseEntity{
 		return (id==((User)obj).getId());
 	}
 
-	//this is one to many relationship many side. this mapped with UserCategory class and join with table column  
+    /**
+	 * this is one to many relationship many side. this mapped with UserCategory class and join with table column
+	 */  
 	@ManyToOne  
 	@JoinColumn(name = "CATEGORY_ID")
 	public UserCategory getUserCategory() {
@@ -126,7 +132,10 @@ public class User extends BaseEntity{
 		this.userCategory = userCategory;
 	}
 
-	//this annotation user to self references.
+	/**
+	 * this annotation user to self references.
+	 * 
+	 * */
 	@ManyToOne(cascade={CascadeType.ALL}) 
 	@JoinColumn(name = "OWER_ID")
 	public User getOwner() {
@@ -154,7 +163,7 @@ public class User extends BaseEntity{
 	public void setPayment(Set<Payment> payment) {
 		this.payment = payment;
 	}
-	
+
 	
 
 }

@@ -16,6 +16,7 @@
 <p>Here you can edit the existing user category.</p>
 <p>${message}</p>
 <form:form method="POST" commandName="userCategory" action="${pageContext.request.contextPath}/usercategory/edit/${userCategory.id}.html">
+<div>${message}</div>
 <table>
 <tbody>
 	<tr>

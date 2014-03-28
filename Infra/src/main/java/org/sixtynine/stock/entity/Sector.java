@@ -16,12 +16,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name = "SECTOR")
 public class Sector extends BaseEntity {
 
 	private int id;
+	
+	@NotEmpty
 	private String code;
+	
+	@NotEmpty
 	private String name;
 	private Set<DailySectorData> dailySectorData;	
 	private Set<Company> company;
