@@ -15,7 +15,7 @@
 <h1>Edit team page</h1>
 <p>Here you can edit the existing team.</p>
 <p>${message}</p>
-<form:form method="POST" commandName="copmany" action="${pageContext.request.contextPath}/copmany/edit/${copmany.id}.html">
+<form:form method="POST" commandName="company" action="${pageContext.request.contextPath}/company/edit/${company.id}.html">
  <table>
    <%-- <tr>
     	<td>

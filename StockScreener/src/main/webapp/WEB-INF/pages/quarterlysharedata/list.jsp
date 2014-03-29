@@ -11,8 +11,8 @@
 <title>Company List</title>
 </head>
 <body>
-<h1>List of copmany</h1>
-<p>Here you can see the list of the copmany, edit them, remove or update.</p>
+<h1>List of company</h1>
+<p>Here you can see the list of the company, edit them, remove or update.</p>
 <table border="1px" cellpadding="0" cellspacing="0" >
 <thead>
 </thead>

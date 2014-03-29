@@ -1,8 +1,11 @@
-package org.sixtynine.stock.service;
+package org.sixtynine.stock.service.content;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.sixtynine.stock.service.file.FileDataService;
+import org.sixtynine.stock.Constants.CommonData;
+import org.sixtynine.stock.entity.BaseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -11,26 +14,19 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml",
 		"classpath:spring/hibernateContext.xml" })
-public class FileDataServiceTest {
+public class DataManagerTest {
 
 	@Autowired
 	ApplicationContext context;
 
 	@Test
-	public void testPing() {
-
-		FileDataService fileDataService = (FileDataService) context
-				.getBean("fileDataService");
-
-		fileDataService.ping();
-
-	}
-
-	@Test
-	public void testProcess() {
-		FileDataService fileDataService = (FileDataService) context
-				.getBean("fileDataService");
-
-		fileDataService.process("Daily data upload 25 Mar 2014.xlsx");
+	public void testInit() {
+		DataManagerService service = (DataManagerService) context
+				.getBean("dataManagerService");
+		
+		service.init();
+		
+		List<BaseEntity> companyList = service.getData(CommonData.COMPANY.toString());
+		assert(companyList.size() > 0);
 	}
 }

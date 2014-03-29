@@ -12,14 +12,15 @@
 	<context:annotation-config />
 	<context:component-scan base-package="org.sixtynine.stock" />
 
-	<bean id="fileDataService" class="org.sixtynine.stock.service.FileDataServiceImpl">
+	<bean id="fileDataService" class="org.sixtynine.stock.service.file.FileDataServiceImpl">
 		<property name="fileBaseDir"
 			value="D:\Git\Repo\StockScreener\StockManagerService\data\" />
 	</bean>
+	<bean id="dataManagerService" class="org.sixtynine.stock.service.content.DataManagerService"></bean>
 	<bean
 		class="org.springframework.beans.factory.config.ServiceLocatorFactoryBean"
 		id="printStrategyFactory">
-		<property name="serviceLocatorInterface" value="org.sixtynine.stock.service.ExcelProcessorFactory">
+		<property name="serviceLocatorInterface" value="org.sixtynine.stock.service.file.ExcelProcessorFactory">
 		</property>
 	</bean>
 </beans>

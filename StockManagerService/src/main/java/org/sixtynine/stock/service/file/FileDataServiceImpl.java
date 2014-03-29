@@ -1,4 +1,4 @@
-package org.sixtynine.stock.service;
+package org.sixtynine.stock.service.file;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

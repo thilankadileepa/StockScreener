@@ -8,7 +8,7 @@
 
 <h1>Add Company </h1>
 <p>Here you can add a new Company.</p>
-<form:form method="POST" commandName="company" action="${pageContext.request.contextPath}/copmany/add/process.html">
+<form:form method="POST" commandName="company" action="${pageContext.request.contextPath}/company/add/process.html">
  <table>
     <tr>
     	<td>

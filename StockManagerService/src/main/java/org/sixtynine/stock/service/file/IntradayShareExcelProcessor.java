@@ -1,4 +1,4 @@
-package org.sixtynine.stock.service;
+package org.sixtynine.stock.service.file;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,6 +56,16 @@ public class IntradayShareExcelProcessor extends ExcelProcessor {
 					Cell cell = cellIterator.next();
 
 					Object cellVal = getCellValue(cell);
+					switch (colIndex) {
+					case 0:
+						
+						break;
+					case 1:
+						break;
+
+					default:
+						break;
+					}
 
 					colIndex++;
 				}

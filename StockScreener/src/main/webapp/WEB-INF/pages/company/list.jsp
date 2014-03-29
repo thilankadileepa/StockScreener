@@ -11,21 +11,21 @@
 <title>Company List</title>
 </head>
 <body>
-<h1>List of copmany</h1>
-<p>Here you can see the list of the copmany, edit them, remove or update.</p>
+<h1>List of company</h1>
+<p>Here you can see the list of the company, edit them, remove or update.</p>
 <table border="1px" cellpadding="0" cellspacing="0" >
 <thead>
 </thead>
 <tbody>
  
-<c:forEach var="copmany" items="${companies}">
+<c:forEach var="company" items="${companies}">
 <tr>
-	<td>${copmany.id}</td>
-	<td>${copmany.name}</td>
-	<td>${copmany.code}</td>		
+	<td>${company.id}</td>
+	<td>${company.name}</td>
+	<td>${company.code}</td>		
 	<td>
-	<a href="${pageContext.request.contextPath}/copmany/edit/${copmany.id}.html">Edit</a><br/>
-	<a href="${pageContext.request.contextPath}/copmany/delete/${copmany.id}.html">Delete</a><br/>
+	<a href="${pageContext.request.contextPath}/company/edit/${company.id}.html">Edit</a><br/>
+	<a href="${pageContext.request.contextPath}/company/delete/${company.id}.html">Delete</a><br/>
 	</td>
 </tr>
 </c:forEach>
