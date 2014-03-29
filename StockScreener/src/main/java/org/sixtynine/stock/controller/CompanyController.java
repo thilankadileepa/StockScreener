@@ -24,48 +24,20 @@ public class CompanyController {
 	public ModelAndView addCompany() {
 		ModelAndView modelAndView = new ModelAndView("company/add");
 		modelAndView.addObject("company", new Company());
-<<<<<<< HEAD
 		
-		List<BaseEntity> sectorList = genericService.findAll(Sector.class);		
-        modelAndView.addObject("sectorsMap" ,sectorList);		
-=======
-
-		Map<Integer, String> lagrgcap = new HashMap<Integer, String>();
-
-		lagrgcap.put(1, "Yes");
-		lagrgcap.put(2, "No");
-
-		Map<Integer, String> sectors = new HashMap<Integer, String>();
-
 		List<BaseEntity> sectorList = genericService.findAll(Sector.class);
+		modelAndView.addObject("sectorsMap", sectorList);
 
-		for (BaseEntity sector : sectorList) {
-			Sector sec = (Sector) sector;
-			sectors.put(sec.getId(), sec.getName());
-		}
-
-		modelAndView.addObject("lagrgcap", lagrgcap);
-		modelAndView.addObject("sectorsMap", sectors);
-
->>>>>>> branch 'master' of https://github.com/thilankadileepa/StockScreener.git
 		return modelAndView;
 	}
-<<<<<<< HEAD
+
 	
 	
 	@RequestMapping(value = "/company/add/process")
 	public ModelAndView addingCompany(@ModelAttribute Company company ) {
-		
-		ModelAndView modelAndView = new ModelAndView("home");
-=======
-
-	@RequestMapping(value = "/company/add/process")
-	public ModelAndView addingUser(@ModelAttribute Company company) {
 		ModelAndView modelAndView = new ModelAndView("home");
 
->>>>>>> branch 'master' of https://github.com/thilankadileepa/StockScreener.git
-		genericService.saveOrUpdate(company);
-		
+		genericService.saveOrUpdate(company);	
 		
 		String message = "Company was successfully added.";
 		modelAndView.addObject("message", message);
@@ -86,11 +58,8 @@ public class CompanyController {
 	@RequestMapping(value = "/company/edit/{id}", method = RequestMethod.GET)
 	public ModelAndView editCompany(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("/company/edit");
-<<<<<<< HEAD
-		BaseEntity company = genericService.findById(id,Company.class);
-=======
-		BaseEntity company = genericService.findById(id, Company.class);
->>>>>>> branch 'master' of https://github.com/thilankadileepa/StockScreener.git
+
+		BaseEntity company = genericService.findById(id,Company.class);		
 		modelAndView.addObject("company", company);
 		return modelAndView;
 	}
