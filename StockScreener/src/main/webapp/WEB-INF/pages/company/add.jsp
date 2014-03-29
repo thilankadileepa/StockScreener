@@ -8,14 +8,15 @@
 
 <h1>Add Company </h1>
 <p>Here you can add a new Company.</p>
-<form:form method="POST" commandName="company" action="${pageContext.request.contextPath}/copmany/add/process.html">
+<form:form method="POST" commandName="company" action="${pageContext.request.contextPath}/company/add/process.html">
+<div>${message}</div>
  <table>
     <tr>
     	<td>
     		<form:label path="name">Sector :</form:label>
     	</td>
 	    <td>   
-	        <form:select path="sector" items="${sectorsMap}">  
+	        <form:select itemValue="id" itemLabel="name" path="sector.id" items="${sectorsMap}">  
         	</form:select> 
 	    </td> 
 	</tr>
@@ -27,14 +28,16 @@
         <td><form:label path="code">Code :</form:label></td>
         <td><form:input path="code" /></td>
     </tr>
-    <tr>
+   <tr>
     	<td>
-    		<form:label path="name">Large Cap Company :</form:label>
+    		<form:checkbox path="largeCap" itemLabel="id" itemValue="name" value="1"/>Large cap
     	</td>
 	    <td>   
-	        <form:select path="sector" items="${lagrgcap}">  
-        	</form:select> 
+	        <form:checkbox path="asi" itemLabel="id" itemValue="name" value="1"/>ASI
 	    </td> 
+	    <td>   
+	        <form:checkbox path="snp" itemLabel="id" itemValue="name" value="1"/>S&P
+	    </td>
 	</tr>
     <tr>
         <td colspan="2">

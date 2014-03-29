@@ -1,8 +1,6 @@
 package org.sixtynine.stock.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.sixtynine.stock.entity.BaseEntity;
 import org.sixtynine.stock.entity.Company;
@@ -27,36 +25,19 @@ public class CompanyController {
 		ModelAndView modelAndView = new ModelAndView("company/add");
 		modelAndView.addObject("company", new Company());
 		
-		Map<Integer, String > lagrgcap = new HashMap<Integer, String>(); 
-	   
-	   	lagrgcap.put(1, "Yes");  
-	   	lagrgcap.put(2, "No"); 
-	   	
-	   	Map<Integer, String > sectors = new HashMap<Integer, String>();  
-		
-		List<BaseEntity> sectorList = genericService
-				.findAll(Sector.class);
-		
-		for( BaseEntity sector : sectorList){
-			Sector sec = (Sector)sector; 
-			sectors.put(sec.getId(), sec.getName());  
-		}
-		    
-        modelAndView.addObject("lagrgcap" ,lagrgcap);
-        modelAndView.addObject("sectorsMap" ,sectors);
-		
+		List<BaseEntity> sectorList = genericService.findAll(Sector.class);		
+        modelAndView.addObject("sectorsMap" ,sectorList);		
 		return modelAndView;
 	}
 	
 	
-	@RequestMapping(value = "/company/add/process/")
-	public ModelAndView addingUser(@ModelAttribute Company company 
-			) {
-		ModelAndView modelAndView = new ModelAndView("home");
-
+	@RequestMapping(value = "/company/add/process")
+	public ModelAndView addingCompany(@ModelAttribute Company company ) {
 		
+		ModelAndView modelAndView = new ModelAndView("home");
 		genericService.saveOrUpdate(company);
-
+		
+		
 		String message = "Company was successfully added.";
 		modelAndView.addObject("message", message);
 
@@ -68,24 +49,22 @@ public class CompanyController {
 	public ModelAndView listOfCompany() {
 		ModelAndView modelAndView = new ModelAndView("/company/list");
 
-		List<BaseEntity> companies = genericService
-				.findAll(Company.class);
+		List<BaseEntity> companies = genericService.findAll(Company.class);
 		modelAndView.addObject("companies", companies);
 
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/company/edit/{id}", method = RequestMethod.GET)
-	public ModelAndView editTeamPage(@PathVariable Integer id) {
+	public ModelAndView editCompany(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("/company/edit");
-		BaseEntity company = genericService.findById(id,
-				Company.class);
+		BaseEntity company = genericService.findById(id,Company.class);
 		modelAndView.addObject("company", company);
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/company/edit/{id}", method = RequestMethod.POST)
-	public ModelAndView edditingTeam(@ModelAttribute Company company,
+	public ModelAndView edditingCompany(@ModelAttribute Company company,
 			@PathVariable Integer id) {
 
 		ModelAndView modelAndView = new ModelAndView("home");
@@ -99,7 +78,7 @@ public class CompanyController {
 	}
 	
 	@RequestMapping(value = "/company/delete/{id}", method = RequestMethod.GET)
-	public ModelAndView deleteTeam(@PathVariable Integer id) {
+	public ModelAndView deleteCompany(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("home");
 		genericService.delete(id, Company.class);
 		String message = "Team was successfully deleted.";

@@ -32,10 +32,15 @@ public class Company extends BaseEntity{
 	@NotEmpty
 	private String name;
 	private Sector sector;
+	
 	private Set<AnnualShareData> annualShareData;
 	private Set<IntradayShareData> intradayShareData;
 	private Set<QuarterlyShareData> quarterlyShareData;
 	private Set<DailyShareData> dailyShareData;
+	
+	private char largeCap;
+	private char asi;
+	private char snp;
 
 	public Company() {
 	}
@@ -123,5 +128,35 @@ public class Company extends BaseEntity{
 	public void setDailyShareData(Set<DailyShareData> dailyShareData) {
 		this.dailyShareData = dailyShareData;
 	}
+
+	@Column(name = "LARGE_CAP_COMPANY", nullable = false, length = 1)
+	public char getLargeCap() {
+		return largeCap;
+	}
+
+	public void setLargeCap(char largeCap) {
+		this.largeCap = largeCap;
+	}
+
+	@Column(name = "ASI", nullable = false, length = 1)
+	public char getAsi() {
+		return asi;
+	}
+
+	public void setAsi(char asi) {
+		this.asi = asi;
+	}
+
+	
+	@Column(name = "SANDPP", nullable = false, length = 1)
+	public char getSnp() {
+		return snp;
+	}
+
+	public void setSnp(char snp) {
+		this.snp = snp;
+	}
+	
+	
 
 }
