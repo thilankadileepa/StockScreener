@@ -16,7 +16,10 @@
 <p>Here you can edit the existing team.</p>
 <p>${message}</p>
 <form:form method="POST" commandName="company" action="${pageContext.request.contextPath}/company/edit/${company.id}.html">
+<<<<<<< HEAD
 <div>${message}</div>
+=======
+>>>>>>> branch 'master' of https://github.com/thilankadileepa/StockScreener.git
  <table>
     <tr>
     	<td>

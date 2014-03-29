@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="org.sixtynine.stock" />
+
+	<bean id="fileDataService" class="org.sixtynine.stock.service.file.FileDataServiceImpl">
+		<property name="fileBaseDir"
+			value="D:\Git\Repo\StockScreener\StockManagerService\data\" />
+	</bean>
+	<bean id="dataManagerService" class="org.sixtynine.stock.service.content.DataManagerService"></bean>
+	<bean
+		class="org.springframework.beans.factory.config.ServiceLocatorFactoryBean"
+		id="printStrategyFactory">
+		<property name="serviceLocatorInterface" value="org.sixtynine.stock.service.file.ExcelProcessorFactory">
+		</property>
+	</bean>
+</beans>

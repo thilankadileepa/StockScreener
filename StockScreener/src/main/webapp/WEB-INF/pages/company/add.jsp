@@ -9,7 +9,10 @@
 <h1>Add Company </h1>
 <p>Here you can add a new Company.</p>
 <form:form method="POST" commandName="company" action="${pageContext.request.contextPath}/company/add/process.html">
+<<<<<<< HEAD
 <div>${message}</div>
+=======
+>>>>>>> branch 'master' of https://github.com/thilankadileepa/StockScreener.git
  <table>
     <tr>
     	<td>

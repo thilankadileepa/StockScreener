@@ -48,7 +48,7 @@ public class CompanyServiceTest {
 	private Company createCompany(String name) {
 		Company company = new Company(name);
 		
-		company.setSector(sectorService.findById(24));
+		company.setSector(sectorService.findById(1));
 		companyService.saveCompany(company);
 
 		return company;
