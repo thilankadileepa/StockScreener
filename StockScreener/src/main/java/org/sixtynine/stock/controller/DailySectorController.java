@@ -38,14 +38,14 @@ public class DailySectorController {
 	public ModelAndView addingDailySectorData(@ModelAttribute @Valid DailySectorData dailysectordata,
 			BindingResult result) {
 
-		if (!result.hasErrors()) {
-			ModelAndView modelAndView = new ModelAndView("home");
+		//if (!result.hasErrors()) {
 			genericService.saveOrUpdate(dailysectordata);
+			ModelAndView modelAndView = new ModelAndView("home");
 			return modelAndView;
-		} else {
-			ModelAndView modelAndView = new ModelAndView("dailysectordata/add");
-			return modelAndView;
-		}
+		//} else {
+			/*ModelAndView modelAndView = new ModelAndView("dailysectordata/add");
+			return modelAndView;*/
+		//}
 
 	}
 
@@ -62,7 +62,11 @@ public class DailySectorController {
 	@RequestMapping(value = "/dailysectordata/edit/{id}", method = RequestMethod.GET)
 	public ModelAndView editDailySectorData(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("/dailysectordata/edit");
+		
+		List<BaseEntity> sectors = genericService.findAll(Sector.class);		
 		BaseEntity dailySectorData = genericService.findById(id, DailySectorData.class);
+		
+		modelAndView.addObject("sectorsMap", sectors);
 		modelAndView.addObject("dailySectorData", dailySectorData);
 		return modelAndView;
 	}
@@ -71,10 +75,13 @@ public class DailySectorController {
 	public ModelAndView edditingDailySectorData(@ModelAttribute DailySectorData dailySectorData,
 			@PathVariable Integer id) {
 
-		ModelAndView modelAndView = new ModelAndView("home");
-
 		genericService.saveOrUpdate(dailySectorData);
-
+		
+		ModelAndView modelAndView = new ModelAndView("/dailysectordata/list");
+		
+		List<BaseEntity> dailysectordata = genericService.findAll(DailySectorData.class);
+		modelAndView.addObject("dailysectordata", dailysectordata);
+		
 		String message = "Team was successfully edited.";
 		modelAndView.addObject("message", message);
 

@@ -21,6 +21,8 @@ import javax.persistence.Table;
 public class IntradaySectorData extends BaseEntity{
 
 	private int id;
+	
+	
 	private Date time;
 	private double value;
 	private double valueChange;

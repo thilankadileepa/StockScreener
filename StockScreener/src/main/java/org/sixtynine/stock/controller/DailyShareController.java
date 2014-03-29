@@ -2,6 +2,8 @@ package org.sixtynine.stock.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.sixtynine.stock.entity.BaseEntity;
 import org.sixtynine.stock.entity.Company;
 import org.sixtynine.stock.entity.DailyShareData;
@@ -36,10 +38,14 @@ public class DailyShareController {
 	
 	
 	@RequestMapping(value = "/dailysharedata/add/process")
-	public ModelAndView addingDailyShareDatar(@ModelAttribute DailyShareData dailyShareData) {
-		ModelAndView modelAndView = new ModelAndView("home");
+	public ModelAndView addingDailyShareData(@ModelAttribute @Valid DailyShareData dailyShareData) {
 		
 		genericService.saveOrUpdate(dailyShareData);
+		
+		ModelAndView modelAndView = new ModelAndView("/dailysharedata/list");
+
+		List<BaseEntity> dailyShareDataList = genericService.findAll(FilterCategory.class);
+		modelAndView.addObject("DailyShareDataList", dailyShareDataList);
 
 		String message = "User was successfully added.";
 		modelAndView.addObject("message", message);
@@ -52,8 +58,7 @@ public class DailyShareController {
 	public ModelAndView listOfDailyShareData() {
 		ModelAndView modelAndView = new ModelAndView("/dailysharedata/list");
 
-		List<BaseEntity> dailyShareDataList = genericService
-				.findAll(FilterCategory.class);
+		List<BaseEntity> dailyShareDataList = genericService.findAll(FilterCategory.class);
 		modelAndView.addObject("DailyShareDataList", dailyShareDataList);
 
 		return modelAndView;

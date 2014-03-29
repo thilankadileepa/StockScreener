@@ -8,7 +8,8 @@
 <title>User Manager</title>
 
 <link href="<c:url value="/resources/css/common.css" />" rel="stylesheet" type="text/css" >
-<script type="text/javascript" src="/resources/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.11.0.min.js" />" ></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.10.4.js" />" ></script>
 
 <script type="text/javascript">
 	var strings = new Array();

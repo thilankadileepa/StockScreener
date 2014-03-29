@@ -17,12 +17,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.sixtynine.stock.fileupload.FileUploadData;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "DAILY_SECTOR_DATA")
 public class DailySectorData extends BaseEntity implements FileUploadData {
 
 	private int id;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 	private double closingValue;
 	private double noOfTrades;

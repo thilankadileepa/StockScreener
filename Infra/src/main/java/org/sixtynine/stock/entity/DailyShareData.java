@@ -16,11 +16,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "DAILY_SHARE_DATA")
 public class DailyShareData extends BaseEntity{
 
 	private int id;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 	private double sharePrice;
 	private double high;

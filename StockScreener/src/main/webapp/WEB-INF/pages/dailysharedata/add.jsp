@@ -1,8 +1,19 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.11.0.min.js" />" ></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.10.4.js" />" ></script>
+<link  href="<c:url value="/resources/css/jquery-ui-1.10.4.css" />" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+
+	$(document).ready(function() {
+	 	$( "#datepicker" ).datepicker({ dateFormat: "yy-mm-dd" });
+	});
+
+</script>
 </head>
 <body> 
 
@@ -12,16 +23,17 @@
 <table>
     <tr>
     	<td>
-    		<form:label path="companyId">Company :</form:label>
+    		Company :
     	</td>
 	    <td>   
-	        <form:select path="companyId" items="${companyMap}">  
+	        <form:select itemValue="id" itemLabel="name" path="company.id" items="${companyMap}">  
         	</form:select> 
 	    </td> 
 	</tr>
     <tr>
+    	<fmt:formatDate value="${dailysharedata.date}" var="dateString" pattern="yyyy-MM-dd" />
         <td><form:label path="date">Date :</form:label></td>
-        <td><form:input path="date" id="datepicker" /></td>
+        <td><form:input path="date" value="${dateString} id="datepicker" /></td>
     </tr>
     <tr>
         <td><form:label path="sharePrice">Share Price:</form:label></td>

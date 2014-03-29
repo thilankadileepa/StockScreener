@@ -2,12 +2,15 @@ package org.sixtynine.stock.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.sixtynine.stock.entity.BaseEntity;
 import org.sixtynine.stock.entity.Company;
 import org.sixtynine.stock.entity.Sector;
 import org.sixtynine.stock.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,15 +37,30 @@ public class CompanyController {
 	
 	
 	@RequestMapping(value = "/company/add/process")
-	public ModelAndView addingCompany(@ModelAttribute Company company ) {
-		ModelAndView modelAndView = new ModelAndView("home");
-
-		genericService.saveOrUpdate(company);	
+	public ModelAndView addingCompany(@ModelAttribute @Valid Company company ,BindingResult result ) {		
 		
-		String message = "Company was successfully added.";
-		modelAndView.addObject("message", message);
+		if (!result.hasErrors() ){
+			genericService.saveOrUpdate(company);	
+			ModelAndView modelAndView = new ModelAndView("/company/list");
+			List<BaseEntity> companies = genericService.findAll(Company.class);
+			modelAndView.addObject("companies", companies);
+			String message = "Company was successfully added.";
+			modelAndView.addObject("message", message);
+			return modelAndView;
+		}
+		else {
+			
+			ModelAndView modelAndView = new ModelAndView("company/add");
+			
+			List<BaseEntity> sectorList = genericService.findAll(Sector.class);
+			modelAndView.addObject("sectorsMap", sectorList);
+			String message = "Please fil requered field.";
+			modelAndView.addObject("message", message);
 
-		return modelAndView;
+			return modelAndView;
+		}
+
+		
 	}
 
 	@RequestMapping(value = "/company/list")
@@ -65,17 +83,29 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/company/edit/{id}", method = RequestMethod.POST)
-	public ModelAndView edditingCompany(@ModelAttribute Company company,
+	public ModelAndView edditingCompany(@ModelAttribute @Valid Company company, BindingResult result,
 			@PathVariable Integer id) {
 
-		ModelAndView modelAndView = new ModelAndView("home");
+		if(!result.hasErrors()){	
+			genericService.saveOrUpdate(company);
+			ModelAndView modelAndView = new ModelAndView("/company/list");
 
-		genericService.saveOrUpdate(company);
+			List<BaseEntity> companies = genericService.findAll(Company.class);
+			modelAndView.addObject("companies", companies);
 
-		String message = "Team was successfully edited.";
-		modelAndView.addObject("message", message);
+			String message = "Company was successfully edited.";
+			modelAndView.addObject("message", message);
 
-		return modelAndView;
+			return modelAndView;
+		}
+		else{			
+			ModelAndView modelAndView = new ModelAndView("/company/edit");
+			BaseEntity editCompany = genericService.findById(id,Company.class);		
+			modelAndView.addObject("company", editCompany);
+			return modelAndView;
+			
+		}
+		
 	}
 
 	@RequestMapping(value = "/company/delete/{id}", method = RequestMethod.GET)

@@ -1,8 +1,10 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Company</title>
+<link href="<c:url value="/resources/css/common.css" />" rel="stylesheet" type="text/css" >
 </head>
 <body> 
 
@@ -23,10 +25,12 @@
     <tr>
         <td><form:label path="name">Name :</form:label></td>
         <td><form:input path="name" /></td>
+        <td><form:errors path="name" cssClass="error"></form:errors></td>
     </tr>
     <tr>
         <td><form:label path="code">Code :</form:label></td>
         <td><form:input path="code" /></td>
+        <td><form:errors path="code" cssClass="error"></form:errors></td>
     </tr>
    <tr>
     	<td>
