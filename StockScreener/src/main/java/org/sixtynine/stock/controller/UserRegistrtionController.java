@@ -68,7 +68,6 @@ public class UserRegistrtionController {
 		
 		String remoteAddress = servletRequest.getRemoteAddr();
 		ReCaptchaResponse reCaptchaResponse = this.reCaptcha.checkAnswer(remoteAddress, challangeField, responseField);
-		System.out.println(reCaptchaResponse.getErrorMessage());
 
 		if (!result.hasErrors() && reCaptchaResponse.isValid()) {
 			ModelAndView modelAndView = new ModelAndView("/user/list");
