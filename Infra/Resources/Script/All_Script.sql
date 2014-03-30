@@ -1,6 +1,6 @@
 /*
 Created		3/5/2014
-Modified		3/26/2014
+Modified		3/29/2014
 Project		
 Model		
 Company		
@@ -13,6 +13,7 @@ DROP DATABASE STOCK;
 CREATE DATABASE STOCK;
 USE STOCK;
 
+drop table IF EXISTS SUB_SECTOR;
 drop table IF EXISTS FILTER_CATEGORY;
 drop table IF EXISTS DIVIDEND;
 drop table IF EXISTS BANNER;
@@ -41,6 +42,7 @@ Create table COMPANY (
 	LARGE_CAP_COMPANY Char(1),
 	ASI Char(1) COMMENT 'Is it an ASI company',
 	SANDPP Char(1) COMMENT 'Is it an S&PP company ',
+	STATUS Char(1),
  Primary Key (ID)) ENGINE = InnoDB
 COMMENT = 'To mark as a large cap company.';
 
@@ -210,23 +212,11 @@ Create table FILTER_CATEGORY (
  Primary Key (ID)) ENGINE = InnoDB
 COMMENT = 'Fundamental, most use, advanced, etc...';
 
-
-Alter table INTRADAY_SHARE_DATA add Foreign Key (COMPANY_ID) references COMPANY (ID) on delete  restrict on update  restrict;
-Alter table DAILY_SHARE_DATA add Foreign Key (COMPANY_ID) references COMPANY (ID) on delete  restrict on update  restrict;
-Alter table QUARTERLY_SHARE_DATA add Foreign Key (COMPANY_ID) references COMPANY (ID) on delete  restrict on update  restrict;
-Alter table ANNUAL_SHARE_DATA add Foreign Key (COMPANY_ID) references COMPANY (ID) on delete  restrict on update  restrict;
-Alter table DIVIDEND add Foreign Key (COMPANY_ID) references COMPANY (ID) on delete  restrict on update  restrict;
-Alter table COMPANY add Foreign Key (SECTOR_ID) references SECTOR (ID) on delete  restrict on update  restrict;
-Alter table INTRADAY_SECTOR_DATA add Foreign Key (SECTOR_ID) references SECTOR (ID) on delete  restrict on update  restrict;
-Alter table DAILY_SECTOR_DATA add Foreign Key (SECTOR_ID) references SECTOR (ID) on delete  restrict on update  restrict;
-Alter table USER add Foreign Key (OWER_ID) references USER (ID) on delete  restrict on update  restrict;
-Alter table PAYMENT add Foreign Key (USER_ID) references USER (ID) on delete  restrict on update  restrict;
-Alter table USER add Foreign Key (CATEGORY_ID) references USER_CATEGORY (ID) on delete  restrict on update  restrict;
-Alter table CATEGORY_MODULE add Foreign Key (USER_CATEGORY_ID) references USER_CATEGORY (ID) on delete  restrict on update  restrict;
-Alter table CATEGORY_FILTER add Foreign Key (CATEGORY_ID) references USER_CATEGORY (ID) on delete  restrict on update  restrict;
-Alter table CATEGORY_MODULE add Foreign Key (MODULE_ID) references MODULE (ID) on delete  restrict on update  restrict;
-Alter table FILTER add Foreign Key (MODULE_ID) references MODULE (ID) on delete  restrict on update  restrict;
-Alter table CATEGORY_FILTER add Foreign Key (FILTER_ID) references FILTER (ID) on delete  restrict on update  restrict;
-Alter table FILTER add Foreign Key (FILTER_CATEGORY_ID) references FILTER_CATEGORY (ID) on delete  restrict on update  restrict;
+Create table SUB_SECTOR (
+	ID Int NOT NULL AUTO_INCREMENT,
+	SECTOR_ID Int NOT NULL,
+	NAME Varchar(20),
+	CODE Varchar(20),
+ Primary Key (ID)) ENGINE = MyISAM;
 
 
