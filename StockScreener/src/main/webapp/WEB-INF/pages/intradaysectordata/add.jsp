@@ -15,7 +15,7 @@
     		Sector :
     	</td>
 	    <td>   
-	        <form:select path="sector" items="${sectorMap}">  
+	        <form:select itemValue="id" itemLabel="name" path="sector.id" items="${sectorMap}">  
         	</form:select> 
 	    </td> 
 	</tr>

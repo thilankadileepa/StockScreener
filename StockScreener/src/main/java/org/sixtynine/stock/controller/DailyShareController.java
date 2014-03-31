@@ -58,9 +58,8 @@ public class DailyShareController {
 	public ModelAndView listOfDailyShareData() {
 		ModelAndView modelAndView = new ModelAndView("/dailysharedata/list");
 
-		List<BaseEntity> dailyShareDataList = genericService.findAll(FilterCategory.class);
-		modelAndView.addObject("DailyShareDataList", dailyShareDataList);
-
+		List<BaseEntity> dailyShareDataList = genericService.findAll(DailyShareData.class);
+		modelAndView.addObject("dailyShareDataList", dailyShareDataList);
 		return modelAndView;
 	}
 	
@@ -68,9 +67,11 @@ public class DailyShareController {
 	@RequestMapping(value = "/dailysharedata/edit/{id}", method = RequestMethod.GET)
 	public ModelAndView editDailyShareData(@PathVariable Integer id) {
 		ModelAndView modelAndView = new ModelAndView("/dailysharedata/edit");
-		BaseEntity dailyShareData = genericService.findById(id,DailyShareData.class);
-	
+		BaseEntity dailyShareData = genericService.findById(id,DailyShareData.class);	
 		modelAndView.addObject("dailyShareData", dailyShareData);
+		
+		List<BaseEntity> compaies = genericService.findAll(Company.class); 
+		modelAndView.addObject("companyMap", compaies);
 		
 		return modelAndView;
 	}

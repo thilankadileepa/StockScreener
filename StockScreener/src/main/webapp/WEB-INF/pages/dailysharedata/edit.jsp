@@ -1,4 +1,5 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 
@@ -9,26 +10,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Edit team page</title>
+<title>Edit Daily share data</title>
+
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.11.0.min.js" />" ></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.10.4.js" />" ></script>
+<link  href="<c:url value="/resources/css/jquery-ui-1.10.4.css" />" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+
+	$(document).ready(function() {
+	 	$( "#datepicker" ).datepicker({ dateFormat: "yy-mm-dd" });
+	});
+
+</script>
 </head>
 <body>
-<h1>Edit team page</h1>
-<p>Here you can edit the existing team.</p>
+<h1>Edit daily share data</h1>
+<p>Here you can edit the existing daily share data.</p>
 <p>${message}</p>
 <form:form method="POST" commandName="dailyShareData" action="${pageContext.request.contextPath}/dailysharedata/edit/${userCategory.id}.html">
 <table>
     <tr>
     	<td>
-    		<form:label path="companyId">Company :</form:label>
+    		Company :
     	</td>
 	    <td>   
-	        <form:select path="companyId" items="${companyMap}">  
+	        <form:select itemValue="id" itemLabel="name" path="company.id" items="${companyMap}">  
         	</form:select> 
 	    </td> 
 	</tr>
     <tr>
+        <fmt:formatDate value="${dailysharedata.date}" var="dateString" pattern="yyyy-MM-dd" />
         <td><form:label path="date">Date :</form:label></td>
-        <td><form:input path="date" id="datepicker" /></td>
+        <td><form:input path="date" value="${dateString}" id="datepicker" /></td>
     </tr>
     <tr>
         <td><form:label path="sharePrice">Share Price:</form:label></td>
@@ -56,8 +69,9 @@
     </tr>
      <tr>
         <td><form:label path="openingPrice">Opening Price :</form:label></td>
-        <td><form:input path="openingPrice" /></td>
+        <td><form:input path="openingPrice" /></td>        
     </tr>
+    <tr><td><form:hidden  path="id" ></form:hidden></td></tr>
     <tr>
         <td colspan="2">
             <input type="submit" value="Save"/>

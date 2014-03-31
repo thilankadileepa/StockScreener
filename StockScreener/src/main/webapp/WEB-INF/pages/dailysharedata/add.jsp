@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Daily Share Data</title>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.11.0.min.js" />" ></script>
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-ui-1.10.4.js" />" ></script>
 <link  href="<c:url value="/resources/css/jquery-ui-1.10.4.css" />" rel="stylesheet" type="text/css" />
@@ -17,8 +17,8 @@
 </head>
 <body> 
 
-<h1>Add team page</h1>
-<p>Here you can add a new team.</p>
+<h1>Add daily share data page</h1>
+<p>Here you can add a new daily share data.</p>
 <form:form method="POST" commandName="dailysharedata" action="${pageContext.request.contextPath}/dailysharedata/add/process.html">
 <table>
     <tr>
@@ -33,7 +33,7 @@
     <tr>
     	<fmt:formatDate value="${dailysharedata.date}" var="dateString" pattern="yyyy-MM-dd" />
         <td><form:label path="date">Date :</form:label></td>
-        <td><form:input path="date" value="${dateString} id="datepicker" /></td>
+        <td><form:input path="date" value="${dateString}" id="datepicker" /></td>
     </tr>
     <tr>
         <td><form:label path="sharePrice">Share Price:</form:label></td>

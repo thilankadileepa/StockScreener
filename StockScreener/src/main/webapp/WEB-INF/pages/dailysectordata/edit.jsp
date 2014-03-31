@@ -46,6 +46,7 @@
         <td><form:label path="turnOver">Turnover :</form:label></td>
         <td><form:input path="turnOver" /></td>
     </tr>
+    <tr><td><form:hidden  path="id" ></form:hidden></td></tr>
     <tr>
         <td colspan="2">
             <input type="submit" value="Save"/>
